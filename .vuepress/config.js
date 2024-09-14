@@ -46,6 +46,11 @@ module.exports = {
         "icon": "reco-message",
         "items": [
           {
+            "text": "商务合作",
+            "link": "/docs/wechat.md",
+            "icon": "reco-wechat"
+          },
+          {
             "text": "GitHub",
             "link": "https://github.com/zuiyu-main",
             "icon": "reco-github"
@@ -74,18 +79,18 @@ module.exports = {
     },
     "friendLink": [
       {
-        "title": "公众号:醉鱼Java",
-        "desc": "Enjoy when you can, and endure when you must.",
-        "email": "3128379695@qq.com",
-        "link": "https://mp.weixin.qq.com/s/_8TLEaLgvyZT6M-Hee51wg",
-        "avatar": "https://zuiyu-photo.oss-cn-beijing.aliyuncs.com/img1/202409121118999.png"
+        title: "公众号:醉鱼Java",
+        desc: "码农笔记，越努力越幸运!",
+        // email: "3128379695@qq.com",
+        link: "https://mp.weixin.qq.com/s/_8TLEaLgvyZT6M-Hee51wg",
+        logo: "https://zuiyu-photo.oss-cn-beijing.aliyuncs.com/img1/202409121118999.png"
       },
-      {
-        "title": "vuepress-theme-reco",
-        "desc": "A simple and beautiful vuepress Blog & Doc theme.",
-        "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
-        "link": "https://vuepress-theme-reco.recoluan.com"
-      }
+      // {
+      //   "title": "vuepress-theme-reco",
+      //   "desc": "A simple and beautiful vuepress Blog & Doc theme.",
+      //   "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
+      //   "link": "https://vuepress-theme-reco.recoluan.com"
+      // }
     ],
     "logo": "/logo.png",
     "search": true,
