@@ -1,13 +1,13 @@
 module.exports = {
   "title": "醉鱼Java",
-  "description": "小鱼的博客记录",
+  "description": "鱼哥多年的踩坑笔记",
   "dest": "public",
   "head": [
     [
       "link",
       {
         "rel": "icon",
-        "href": "/favicon.ico"
+        "href": "/zuiyujava.png"
       }
     ],
     [
@@ -22,32 +22,32 @@ module.exports = {
   "themeConfig": {
     "nav": [
       {
-        "text": "Home",
+        "text": "主页",
         "link": "/",
         "icon": "reco-home"
       },
       {
-        "text": "TimeLine",
+        "text": "时间线",
         "link": "/timeline/",
         "icon": "reco-date"
       },
+      // {
+      //   "text": "Docs",
+      //   "icon": "reco-message",
+      //   "items": [
+      //     {
+      //       "text": "vuepress-reco",
+      //       "link": "/docs/theme-reco/"
+      //     }
+      //   ]
+      // },
       {
-        "text": "Docs",
-        "icon": "reco-message",
-        "items": [
-          {
-            "text": "vuepress-reco",
-            "link": "/docs/theme-reco/"
-          }
-        ]
-      },
-      {
-        "text": "Contact",
+        "text": "联系作者",
         "icon": "reco-message",
         "items": [
           {
             "text": "GitHub",
-            "link": "https://github.com/recoluan",
+            "link": "https://github.com/zuiyu-main",
             "icon": "reco-github"
           }
         ]
@@ -65,19 +65,20 @@ module.exports = {
     "blogConfig": {
       "category": {
         "location": 2,
-        "text": "Category"
+        "text": "分类"
       },
       "tag": {
         "location": 3,
-        "text": "Tag"
+        "text": "标签"
       }
     },
     "friendLink": [
       {
-        "title": "午后南杂",
+        "title": "公众号:醉鱼Java",
         "desc": "Enjoy when you can, and endure when you must.",
-        "email": "1156743527@qq.com",
-        "link": "https://www.recoluan.com"
+        "email": "3128379695@qq.com",
+        "link": "https://mp.weixin.qq.com/s/_8TLEaLgvyZT6M-Hee51wg",
+        "avatar": "https://zuiyu-photo.oss-cn-beijing.aliyuncs.com/img1/202409121118999.png"
       },
       {
         "title": "vuepress-theme-reco",
@@ -90,10 +91,10 @@ module.exports = {
     "search": true,
     "searchMaxSuggestions": 10,
     "lastUpdated": "Last Updated",
-    "author": "zuiyu",
+    "author": "醉鱼Java",
     "authorAvatar": "/avatar.png",
     "record": "xxxx",
-    "startYear": "2017"
+    "startYear": "2019"
   },
   "markdown": {
     "lineNumbers": true

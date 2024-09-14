@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: vuepress-theme-reco
-tagline: A simple and beautiful vuepress blog theme.
+heroText: 醉鱼Java
+tagline: 鱼哥的多年编程踩坑记录
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',
