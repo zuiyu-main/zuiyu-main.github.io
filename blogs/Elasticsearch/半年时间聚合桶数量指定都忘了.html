@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Elasticsearch 聚合桶简单使用 | 醉鱼Java</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/zuiyujava.png">
+    <meta name="description" content="鱼哥多年的踩坑笔记">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.31e3f89e.css" as="style"><link rel="preload" href="/assets/js/app.a2135f4c.js" as="script"><link rel="preload" href="/assets/js/3.efa71374.js" as="script"><link rel="preload" href="/assets/js/1.8106763a.js" as="script"><link rel="preload" href="/assets/js/43.c0a45d73.js" as="script"><link rel="prefetch" href="/assets/js/10.37ddf785.js"><link rel="prefetch" href="/assets/js/11.4cd61c9d.js"><link rel="prefetch" href="/assets/js/12.d75ae48d.js"><link rel="prefetch" href="/assets/js/13.a144660e.js"><link rel="prefetch" href="/assets/js/14.117b4fa2.js"><link rel="prefetch" href="/assets/js/15.3346c3dd.js"><link rel="prefetch" href="/assets/js/16.e7e63b88.js"><link rel="prefetch" href="/assets/js/17.0173795c.js"><link rel="prefetch" href="/assets/js/18.6bc10295.js"><link rel="prefetch" href="/assets/js/19.5dfe9517.js"><link rel="prefetch" href="/assets/js/20.74e5241c.js"><link rel="prefetch" href="/assets/js/21.e3503909.js"><link rel="prefetch" href="/assets/js/22.ad99143b.js"><link rel="prefetch" href="/assets/js/23.939c8ed8.js"><link rel="prefetch" href="/assets/js/24.ef05a089.js"><link rel="prefetch" href="/assets/js/25.f6946c50.js"><link rel="prefetch" href="/assets/js/26.f35b0f0f.js"><link rel="prefetch" href="/assets/js/27.25e4c01b.js"><link rel="prefetch" href="/assets/js/28.877e4c86.js"><link rel="prefetch" href="/assets/js/29.8325b03b.js"><link rel="prefetch" href="/assets/js/30.787a3e08.js"><link rel="prefetch" href="/assets/js/31.0dd83650.js"><link rel="prefetch" href="/assets/js/32.b8cb5283.js"><link rel="prefetch" href="/assets/js/33.08f6c32f.js"><link rel="prefetch" href="/assets/js/34.6eccd988.js"><link rel="prefetch" href="/assets/js/35.cfaacae4.js"><link rel="prefetch" href="/assets/js/36.18983fd7.js"><link rel="prefetch" href="/assets/js/37.5c52dbfb.js"><link rel="prefetch" href="/assets/js/38.92cdad6f.js"><link rel="prefetch" href="/assets/js/39.a0a8376d.js"><link rel="prefetch" href="/assets/js/4.136abf56.js"><link rel="prefetch" href="/assets/js/40.377fe8c5.js"><link rel="prefetch" href="/assets/js/41.8cf48059.js"><link rel="prefetch" href="/assets/js/42.9a4cdd87.js"><link rel="prefetch" href="/assets/js/44.434281f7.js"><link rel="prefetch" href="/assets/js/45.f673d21c.js"><link rel="prefetch" href="/assets/js/46.196bed14.js"><link rel="prefetch" href="/assets/js/47.f882ab07.js"><link rel="prefetch" href="/assets/js/48.5be161e0.js"><link rel="prefetch" href="/assets/js/49.66dde053.js"><link rel="prefetch" href="/assets/js/5.a0d0afa5.js"><link rel="prefetch" href="/assets/js/50.54f37926.js"><link rel="prefetch" href="/assets/js/51.65e8aba1.js"><link rel="prefetch" href="/assets/js/52.ee403224.js"><link rel="prefetch" href="/assets/js/53.3bf30b1d.js"><link rel="prefetch" href="/assets/js/54.655af45b.js"><link rel="prefetch" href="/assets/js/55.3bbae5d0.js"><link rel="prefetch" href="/assets/js/56.8ba03e1c.js"><link rel="prefetch" href="/assets/js/57.233e7a01.js"><link rel="prefetch" href="/assets/js/6.69391341.js"><link rel="prefetch" href="/assets/js/7.502a6c59.js"><link rel="prefetch" href="/assets/js/8.d4588d28.js"><link rel="prefetch" href="/assets/js/9.32b11a7c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.31e3f89e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-2a0acbb5><div data-v-2a0acbb5><div class="password-shadow password-wrapper-out" style="display:none;" data-v-6afaaa56 data-v-2a0acbb5 data-v-2a0acbb5><h3 class="title" data-v-6afaaa56>醉鱼Java</h3> <p class="description" data-v-6afaaa56>鱼哥多年的踩坑笔记</p> <label id="box" class="inputBox" data-v-6afaaa56><input type="password" value="" data-v-6afaaa56> <span data-v-6afaaa56>Konck! Knock!</span> <button data-v-6afaaa56>OK</button></label> <div class="footer" data-v-6afaaa56><span data-v-6afaaa56><i class="iconfont reco-theme" data-v-6afaaa56></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6afaaa56>vuePress-theme-reco</a></span> <span data-v-6afaaa56><i class="iconfont reco-copyright" data-v-6afaaa56></i> <a data-v-6afaaa56><span data-v-6afaaa56>醉鱼Java</span>
+          
+        <span data-v-6afaaa56>2019 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-2a0acbb5><header class="navbar" data-v-2a0acbb5><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="醉鱼Java" class="logo"> <span class="site-name">醉鱼Java</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/Elasticsearch/" class="nav-link"><i class="undefined"></i>
+  Elasticsearch
+</a></li><li class="dropdown-item"><!----> <a href="/categories/category1/" class="nav-link"><i class="undefined"></i>
+  category1
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系作者
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/wechat.html" class="nav-link"><i class="iconfont reco-wechat"></i>
+  商务合作
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/zuiyu-main" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-2a0acbb5></div> <aside class="sidebar" data-v-2a0acbb5><div class="personal-info-wrapper" data-v-3382c467 data-v-2a0acbb5><img src="/avatar.png" alt="author-avatar" class="personal-img" data-v-3382c467> <h3 class="name" data-v-3382c467>
+    醉鱼Java
+  </h3> <div class="num" data-v-3382c467><div data-v-3382c467><h3 data-v-3382c467>32</h3> <h6 data-v-3382c467>Articles</h6></div> <div data-v-3382c467><h3 data-v-3382c467>3</h3> <h6 data-v-3382c467>Tags</h6></div></div> <ul class="social-links" data-v-3382c467></ul> <hr data-v-3382c467></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/Elasticsearch/" class="nav-link"><i class="undefined"></i>
+  Elasticsearch
+</a></li><li class="dropdown-item"><!----> <a href="/categories/category1/" class="nav-link"><i class="undefined"></i>
+  category1
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系作者
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/wechat.html" class="nav-link"><i class="iconfont reco-wechat"></i>
+  商务合作
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/zuiyu-main" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-6afaaa56 data-v-2a0acbb5><h3 class="title" data-v-6afaaa56>Elasticsearch 聚合桶简单使用</h3> <!----> <label id="box" class="inputBox" data-v-6afaaa56><input type="password" value="" data-v-6afaaa56> <span data-v-6afaaa56>Konck! Knock!</span> <button data-v-6afaaa56>OK</button></label> <div class="footer" data-v-6afaaa56><span data-v-6afaaa56><i class="iconfont reco-theme" data-v-6afaaa56></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6afaaa56>vuePress-theme-reco</a></span> <span data-v-6afaaa56><i class="iconfont reco-copyright" data-v-6afaaa56></i> <a data-v-6afaaa56><span data-v-6afaaa56>醉鱼Java</span>
+          
+        <span data-v-6afaaa56>2019 - </span>
+        2024
+      </a></span></div></div> <div data-v-2a0acbb5><div data-v-2a0acbb5><main class="page" style="padding-right:0;"><section style="display:;"><div class="page-title"><h1 class="title">Elasticsearch 聚合桶简单使用</h1> <div data-v-4b52865a><i class="iconfont reco-account" data-v-4b52865a><span data-v-4b52865a>醉鱼Java</span></i> <i class="iconfont reco-date" data-v-4b52865a><span data-v-4b52865a>1/1/2019</span></i> <!----> <i class="tags iconfont reco-tag" data-v-4b52865a><span class="tag-item" data-v-4b52865a>Elasticsearch</span></i></div></div> <div class="theme-reco-content content__default"><p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724165633022.png" alt="image-20240724165633022"></p> <h2 id="一、版本"><a href="#一、版本" class="header-anchor">#</a> 一、版本</h2> <ul><li>elasticsearch 8.13</li></ul> <h2 id="二、背景"><a href="#二、背景" class="header-anchor">#</a> 二、背景</h2> <p>最近接到一个需求，将 MySQL 中的数据迁移到 Elasticsearch 中，并且相关的业务接口全部切换为使用 Elasticsearch 实现。</p> <p>其中有个统计的功能，先根据 <code>group</code> 进行分组，然后对每个组内对象的 <code>type</code> 值进行分组统计。</p> <blockquote><p>举个例子：对学生进行统计，相当于先按照班级分组，在统计每个班级里面男女生的人数。</p></blockquote> <p>我一想切换到 Elasticsearch 中，相当于嵌套子聚合，一个聚合查询就出来结果，半小时搞定这个接口。</p> <p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724133525183.png" alt="image-20240724133525183"></p> <h2 id="三、问题来了"><a href="#三、问题来了" class="header-anchor">#</a> 三、问题来了</h2> <h3 id="_3-1、初始化数据"><a href="#_3-1、初始化数据" class="header-anchor">#</a> 3.1、初始化数据</h3> <div class="language-text line-numbers-mode"><pre class="language-text"><code>PUT zuiyu_index
+{
+  &quot;settings&quot;: {
+    &quot;number_of_replicas&quot;: 1,
+    &quot;number_of_shards&quot;: 1
+  },
+  &quot;mappings&quot;: {
+    &quot;properties&quot;: {
+      &quot;group&quot;: {
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;fields&quot;: {
+          &quot;keyword&quot;: {
+            &quot;type&quot;: &quot;keyword&quot;,
+            &quot;ignore_above&quot;: 256
+          }
+        }
+      },
+      &quot;type&quot;: {
+        &quot;type&quot;: &quot;long&quot;
+      }
+    }
+  }
+}
+
+POST _bulk
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;1&quot; } }
+{ &quot;group&quot; : &quot;1&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;2&quot; } }
+{ &quot;group&quot; : &quot;1&quot;,&quot;type&quot;:2 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;3&quot; } }
+{ &quot;group&quot; : &quot;1&quot;,&quot;type&quot;:3 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;4&quot; } }
+{ &quot;group&quot; : &quot;2&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;5&quot; } }
+{ &quot;group&quot; : &quot;2&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;6&quot; } }
+{ &quot;group&quot; : &quot;2&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;7&quot; } }
+{ &quot;group&quot; : &quot;3&quot;,&quot;type&quot;:2 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;8&quot; } }
+{ &quot;group&quot; : &quot;4&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;9&quot; } }
+{ &quot;group&quot; : &quot;5&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;10&quot; } }
+{ &quot;group&quot; : &quot;6&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;11&quot; } }
+{ &quot;group&quot; : &quot;7&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;12&quot; } }
+{ &quot;group&quot; : &quot;8&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;13&quot; } }
+{ &quot;group&quot; : &quot;9&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;14&quot; } }
+{ &quot;group&quot; : &quot;10&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;15&quot; } }
+{ &quot;group&quot; : &quot;10&quot;,&quot;type&quot;:2 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;16&quot; } }
+{ &quot;group&quot; : &quot;11&quot;,&quot;type&quot;:1 ,&quot;sort&quot;:1}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zuiyu_index&quot;, &quot;_id&quot; : &quot;17&quot; } }
+{ &quot;group&quot; : &quot;11&quot;,&quot;type&quot;:3 ,&quot;sort&quot;:1}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br></div></div><p>像这种简单的一条 sql 就出来结果的业务，我一般都是先写个 sql 语句，然后根据 sql 再写代码。所以这里我就先写了个DSL语句。</p> <h3 id="_3-2、聚合查询"><a href="#_3-2、聚合查询" class="header-anchor">#</a> 3.2、聚合查询</h3> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zuiyu_index/_search
+{
+  &quot;aggregations&quot;: {
+    &quot;agg_group&quot;: {
+      &quot;aggregations&quot;: {
+        &quot;agg_type&quot;: {
+          &quot;terms&quot;: {
+            &quot;field&quot;: &quot;type&quot;
+          }
+        }
+      },
+      &quot;terms&quot;: {
+        &quot;field&quot;: &quot;group.keyword&quot;
+      }
+    }
+  },
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        {
+          &quot;terms&quot;: {
+            &quot;group.keyword&quot;: [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;10&quot;,&quot;11&quot;]
+          }
+        }
+      ]
+    }
+  },
+  &quot;size&quot;:0
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p>同学们可以看一下上面的语句有问题吗，如果你能发现问题，那么这篇文章也希望你能看下去，也许会有意想不到的收获。</p> <blockquote><p>提示一下：就像标题所说，可以关心一下聚合桶的数量。</p></blockquote> <h2 id="四、发现问题"><a href="#四、发现问题" class="header-anchor">#</a> 四、发现问题</h2> <p>上述 DSL 语句执行之后，<strong>大眼一看</strong> ，结果 OK，是我想要的，那就按这个逻辑直接写 Java 代码。
+上述 DSL 语句中聚合操作对应的 Java 代码如下：</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code> Aggregation aggType = Aggregation.of(agg -&gt; agg.terms(t -&gt; t.field(&quot;type&quot;)));
+ Aggregation aggGroup = Aggregation.of(agg -&gt; agg.terms(t -&gt; t.field(&quot;group&quot;))
+                .aggregations(&quot;agg_type&quot;, aggType));
+                
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>做接口数据层的迁移，最简单的就是修改完业务代码之后直接对比返回结果，保持返回结果的一致，这样的修改对于前端来说没有影响。</p> <p>所以，修改完代码之后直接拿接口的返回值与修改之前的版本进行比对，验证业务逻辑是否一致。直接 F12 控制台，找到该接口的返回值，复制，粘贴到对比工具中，进行对比。</p> <blockquote><p>此处使用的对比工具是 Beyond Compare 。</p></blockquote> <p>通过对比返回结果发现，<strong>聚合桶的数量少了一个</strong>。</p> <p>上面的例子中，我们的预期结果是，最外层 group 的分组最少11个，排除 group 不存在的情况。这里 terms 中条件 group 在索引中都已存在。</p> <p>然后我就赶紧再去执行了一遍上面 DSL 语句，一个一个的验证聚合桶，发现返回结果中竟然没有 <code>group=9</code> 的桶存在。</p> <p>DSL 返回结果如下</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>{
+  &quot;took&quot;: 2,
+  &quot;timed_out&quot;: false,
+  &quot;_shards&quot;: {
+    &quot;total&quot;: 1,
+    &quot;successful&quot;: 1,
+    &quot;skipped&quot;: 0,
+    &quot;failed&quot;: 0
+  },
+  &quot;hits&quot;: {
+    &quot;total&quot;: {
+      &quot;value&quot;: 17,
+      &quot;relation&quot;: &quot;eq&quot;
+    },
+    &quot;max_score&quot;: null,
+    &quot;hits&quot;: []
+  },
+  &quot;aggregations&quot;: {
+    &quot;agg_group&quot;: {
+      &quot;doc_count_error_upper_bound&quot;: 0,
+      &quot;sum_other_doc_count&quot;: 1,
+      &quot;buckets&quot;: [
+        {
+          &quot;key&quot;: &quot;1&quot;,
+          &quot;doc_count&quot;: 3,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              },
+              {
+                &quot;key&quot;: 2,
+                &quot;doc_count&quot;: 1
+              },
+              {
+                &quot;key&quot;: 3,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;2&quot;,
+          &quot;doc_count&quot;: 3,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 3
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;10&quot;,
+          &quot;doc_count&quot;: 2,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              },
+              {
+                &quot;key&quot;: 2,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;11&quot;,
+          &quot;doc_count&quot;: 2,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              },
+              {
+                &quot;key&quot;: 3,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;3&quot;,
+          &quot;doc_count&quot;: 1,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 2,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;4&quot;,
+          &quot;doc_count&quot;: 1,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;5&quot;,
+          &quot;doc_count&quot;: 1,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;6&quot;,
+          &quot;doc_count&quot;: 1,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;7&quot;,
+          &quot;doc_count&quot;: 1,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        },
+        {
+          &quot;key&quot;: &quot;8&quot;,
+          &quot;doc_count&quot;: 1,
+          &quot;agg_type&quot;: {
+            &quot;doc_count_error_upper_bound&quot;: 0,
+            &quot;sum_other_doc_count&quot;: 0,
+            &quot;buckets&quot;: [
+              {
+                &quot;key&quot;: 1,
+                &quot;doc_count&quot;: 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br></div></div><p>到了这，其实我还没想到是什么原因造成的，然后看了好几遍的聚合语句，都没有发现问题。一度的自我怀疑，聚合不是这样用的吗，嵌套的聚合难道还有花样？</p> <ul><li>查阅官方文档</li></ul> <p>官方文档肯定是最权威的，所以去官方文档看看吧，是不是可以给自己点灵感，找到解决方案。</p> <p>首先去的是如下地址：</p> <blockquote><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html#run-sub-aggs" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html#run-sub-aggs<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724160254610.png" alt="image-20240724160254610"></p> <p>官方给的代码示例好简单，确实没毛病，对我没啥启发，告辞转下个网页。</p> <p>还是这个网页，回到页面顶端，有一个 <code>Bucket</code> 字样的地方，点进去。</p> <p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724160445630.png" alt="image-20240724160445630"></p> <blockquote><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket.html" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724160654499.png" alt="image-20240724160654499"></p> <p>在这个页面，发现可以通过 <code>search.max_buckets</code> 设置请求返回聚合桶的总数，然后我脑海中那丢失的记忆回来了。</p> <p>想起了在 Elasticsearch 聚合时，聚合桶的返回数量是可以指定的，但是怎么指定，参数是什么，我又忘了。</p> <p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724160935103.png" alt="image-20240724160935103"></p> <p>但是大方向肯定是这个了，我就开始找相关的资料，翻阅官网关于聚合的文档，终于在官方文档的嵌套聚合中找到了相关的说明。</p> <blockquote><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html#_size" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html#_size<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724161335819.png" alt="image-20240724161335819"></p> <p>大体意思就是<code>size</code>参数可以控制返回聚合桶的数量，默认 <code>10</code>。</p> <p>但是这里也没有给出示例，我还是不会用啊。</p> <p>毕竟咱也是有点 ES 基础的，内心其实已经有了想法，大概知道怎么用了，只是还得需要确认下。</p> <p>最后想起来之前写过关于聚合的文章，抱着试试看的态度，在回顾一下吧。</p> <blockquote><p><a href="https://mp.weixin.qq.com/s/18bz77nwgC_tF8l_jYD3CA" target="_blank" rel="noopener noreferrer">聚合在Elasticsearch中的使用及示例验证<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p>发文日期，2023年8月2日，真是老了，才半年多的时间都忘了，好了回到主题。</p> <p>在这篇文档中，发现了 <code>size</code> 参数的使用，在这里终于确认，聚合桶数量需要指定，并且根据自己的查询条件进行设置，或直接设置一个最大值兼容自己所有的聚合请求。</p> <p>所以修改之后的 DSL 语句如下：</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zuiyu_index/_search
+{
+  &quot;aggregations&quot;: {
+    &quot;agg_group&quot;: {
+      &quot;aggregations&quot;: {
+        &quot;agg_type&quot;: {
+          &quot;terms&quot;: {
+            &quot;field&quot;: &quot;type&quot;
+          }
+        }
+      },
+      &quot;terms&quot;: {
+        &quot;field&quot;: &quot;group.keyword&quot;,
+        &quot;size&quot;: 11
+      }
+    }
+  },
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        {
+          &quot;terms&quot;: {
+            &quot;group.keyword&quot;: [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;10&quot;,&quot;11&quot;]
+          }
+        }
+      ]
+    }
+  },
+  &quot;size&quot;:0
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><p><img src="%E5%8D%8A%E5%B9%B4%E6%97%B6%E9%97%B4%E8%81%9A%E5%90%88%E6%A1%B6%E6%95%B0%E9%87%8F%E6%8C%87%E5%AE%9A%E9%83%BD%E5%BF%98%E4%BA%86.assets/image-20240724162044360.png" alt="image-20240724162044360"></p> <p>相对应的 Java 代码也修改:</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code> Aggregation aggType = Aggregation.of(agg -&gt; agg.terms(t -&gt; t.field(&quot;type&quot;)));
+ Aggregation aggGroup = Aggregation.of(agg -&gt; agg.terms(t -&gt; t.field(&quot;group&quot;).size(groupList.size())
+                .aggregations(&quot;agg_type&quot;, aggType));
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li>groupList.size() 为 terms 查询条件值的数量。</li></ul> <h2 id="五、search-max-buckets"><a href="#五、search-max-buckets" class="header-anchor">#</a> 五、search.max_buckets</h2> <p>可以通过 <code>_cluster</code> 的 API 设置此参数。</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>PUT _cluster/settings
+{
+  &quot;transient&quot;: {
+    &quot;search.max_buckets&quot;:100
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><blockquote><p>此处使用的是 <code>transient</code> ，还可以使用 <code>persistent</code>,他俩的区别就是<code>transient</code> 的配置会在集群重启之后失效，<code>persistent</code>会持久化保存。</p> <p>其中这个参数在之前的索引分片分配策略一文中讲过了，还没看过的可以跳过去看一下，链接我放下面。</p> <p><a href="https://mp.weixin.qq.com/s/Rlu-GDNwnAUR3tzJYkm5Aw" target="_blank" rel="noopener noreferrer">Elasticsearch Index Shard Allocation 索引分片分配策略<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h2 id="六、总结"><a href="#六、总结" class="header-anchor">#</a> 六、总结</h2> <p>本文通过 demo 示例，从发现聚合桶数量丢失，到排查产生丢失的问题，最后通过 <code>size</code> 参数解决聚合桶数量丢失问题的过程。</p> <p>意外收获的是一次请求返回聚合桶数量的总数也是可以通过 <code>search.max_buckets</code>设置的。</p> <p>日常的积累固然重要，熟悉官方文档中相关 API 的位置也是必不可少的。</p> <p>工作中你遇到问题是如何排查的呢，会不会查阅官网文档呢？欢迎在评论区沟通交流，大家一起学习进步！</p> <h2 id="参考链接"><a href="#参考链接" class="header-anchor">#</a> 参考链接</h2> <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket.html" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html" target="_blank" rel="noopener noreferrer">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-composite-aggregation.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://mp.weixin.qq.com/s/18bz77nwgC_tF8l_jYD3CA" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/18bz77nwgC_tF8l_jYD3CA<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://mp.weixin.qq.com/s/Rlu-GDNwnAUR3tzJYkm5Aw" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s/Rlu-GDNwnAUR3tzJYkm5Aw<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">9/18/2024, 1:53:43 PM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:0;" data-v-ff035a48 data-v-2a0acbb5></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-2a01419c data-v-2a01419c><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-2a01419c><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-2a01419c></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-2a01419c></path></svg></div></div></div>
+    <script src="/assets/js/app.a2135f4c.js" defer></script><script src="/assets/js/3.efa71374.js" defer></script><script src="/assets/js/1.8106763a.js" defer></script><script src="/assets/js/43.c0a45d73.js" defer></script>
+  </body>
+</html>

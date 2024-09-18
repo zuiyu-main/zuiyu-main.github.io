@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Elasticsearch 查询语句使用 | 醉鱼Java</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/zuiyujava.png">
+    <meta name="description" content="鱼哥多年的踩坑笔记">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.31e3f89e.css" as="style"><link rel="preload" href="/assets/js/app.a2135f4c.js" as="script"><link rel="preload" href="/assets/js/3.efa71374.js" as="script"><link rel="preload" href="/assets/js/1.8106763a.js" as="script"><link rel="preload" href="/assets/js/21.e3503909.js" as="script"><link rel="prefetch" href="/assets/js/10.37ddf785.js"><link rel="prefetch" href="/assets/js/11.4cd61c9d.js"><link rel="prefetch" href="/assets/js/12.d75ae48d.js"><link rel="prefetch" href="/assets/js/13.a144660e.js"><link rel="prefetch" href="/assets/js/14.117b4fa2.js"><link rel="prefetch" href="/assets/js/15.3346c3dd.js"><link rel="prefetch" href="/assets/js/16.e7e63b88.js"><link rel="prefetch" href="/assets/js/17.0173795c.js"><link rel="prefetch" href="/assets/js/18.6bc10295.js"><link rel="prefetch" href="/assets/js/19.5dfe9517.js"><link rel="prefetch" href="/assets/js/20.74e5241c.js"><link rel="prefetch" href="/assets/js/22.ad99143b.js"><link rel="prefetch" href="/assets/js/23.939c8ed8.js"><link rel="prefetch" href="/assets/js/24.ef05a089.js"><link rel="prefetch" href="/assets/js/25.f6946c50.js"><link rel="prefetch" href="/assets/js/26.f35b0f0f.js"><link rel="prefetch" href="/assets/js/27.25e4c01b.js"><link rel="prefetch" href="/assets/js/28.877e4c86.js"><link rel="prefetch" href="/assets/js/29.8325b03b.js"><link rel="prefetch" href="/assets/js/30.787a3e08.js"><link rel="prefetch" href="/assets/js/31.0dd83650.js"><link rel="prefetch" href="/assets/js/32.b8cb5283.js"><link rel="prefetch" href="/assets/js/33.08f6c32f.js"><link rel="prefetch" href="/assets/js/34.6eccd988.js"><link rel="prefetch" href="/assets/js/35.cfaacae4.js"><link rel="prefetch" href="/assets/js/36.18983fd7.js"><link rel="prefetch" href="/assets/js/37.5c52dbfb.js"><link rel="prefetch" href="/assets/js/38.92cdad6f.js"><link rel="prefetch" href="/assets/js/39.a0a8376d.js"><link rel="prefetch" href="/assets/js/4.136abf56.js"><link rel="prefetch" href="/assets/js/40.377fe8c5.js"><link rel="prefetch" href="/assets/js/41.8cf48059.js"><link rel="prefetch" href="/assets/js/42.9a4cdd87.js"><link rel="prefetch" href="/assets/js/43.c0a45d73.js"><link rel="prefetch" href="/assets/js/44.434281f7.js"><link rel="prefetch" href="/assets/js/45.f673d21c.js"><link rel="prefetch" href="/assets/js/46.196bed14.js"><link rel="prefetch" href="/assets/js/47.f882ab07.js"><link rel="prefetch" href="/assets/js/48.5be161e0.js"><link rel="prefetch" href="/assets/js/49.66dde053.js"><link rel="prefetch" href="/assets/js/5.a0d0afa5.js"><link rel="prefetch" href="/assets/js/50.54f37926.js"><link rel="prefetch" href="/assets/js/51.65e8aba1.js"><link rel="prefetch" href="/assets/js/52.ee403224.js"><link rel="prefetch" href="/assets/js/53.3bf30b1d.js"><link rel="prefetch" href="/assets/js/54.655af45b.js"><link rel="prefetch" href="/assets/js/55.3bbae5d0.js"><link rel="prefetch" href="/assets/js/56.8ba03e1c.js"><link rel="prefetch" href="/assets/js/57.233e7a01.js"><link rel="prefetch" href="/assets/js/6.69391341.js"><link rel="prefetch" href="/assets/js/7.502a6c59.js"><link rel="prefetch" href="/assets/js/8.d4588d28.js"><link rel="prefetch" href="/assets/js/9.32b11a7c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.31e3f89e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-2a0acbb5><div data-v-2a0acbb5><div class="password-shadow password-wrapper-out" style="display:none;" data-v-6afaaa56 data-v-2a0acbb5 data-v-2a0acbb5><h3 class="title" data-v-6afaaa56>醉鱼Java</h3> <p class="description" data-v-6afaaa56>鱼哥多年的踩坑笔记</p> <label id="box" class="inputBox" data-v-6afaaa56><input type="password" value="" data-v-6afaaa56> <span data-v-6afaaa56>Konck! Knock!</span> <button data-v-6afaaa56>OK</button></label> <div class="footer" data-v-6afaaa56><span data-v-6afaaa56><i class="iconfont reco-theme" data-v-6afaaa56></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6afaaa56>vuePress-theme-reco</a></span> <span data-v-6afaaa56><i class="iconfont reco-copyright" data-v-6afaaa56></i> <a data-v-6afaaa56><span data-v-6afaaa56>醉鱼Java</span>
+          
+        <span data-v-6afaaa56>2019 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-2a0acbb5><header class="navbar" data-v-2a0acbb5><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="醉鱼Java" class="logo"> <span class="site-name">醉鱼Java</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/Elasticsearch/" class="nav-link"><i class="undefined"></i>
+  Elasticsearch
+</a></li><li class="dropdown-item"><!----> <a href="/categories/category1/" class="nav-link"><i class="undefined"></i>
+  category1
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系作者
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/wechat.html" class="nav-link"><i class="iconfont reco-wechat"></i>
+  商务合作
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/zuiyu-main" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-2a0acbb5></div> <aside class="sidebar" data-v-2a0acbb5><div class="personal-info-wrapper" data-v-3382c467 data-v-2a0acbb5><img src="/avatar.png" alt="author-avatar" class="personal-img" data-v-3382c467> <h3 class="name" data-v-3382c467>
+    醉鱼Java
+  </h3> <div class="num" data-v-3382c467><div data-v-3382c467><h3 data-v-3382c467>32</h3> <h6 data-v-3382c467>Articles</h6></div> <div data-v-3382c467><h3 data-v-3382c467>3</h3> <h6 data-v-3382c467>Tags</h6></div></div> <ul class="social-links" data-v-3382c467></ul> <hr data-v-3382c467></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/Elasticsearch/" class="nav-link"><i class="undefined"></i>
+  Elasticsearch
+</a></li><li class="dropdown-item"><!----> <a href="/categories/category1/" class="nav-link"><i class="undefined"></i>
+  category1
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系作者
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/wechat.html" class="nav-link"><i class="iconfont reco-wechat"></i>
+  商务合作
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/zuiyu-main" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-6afaaa56 data-v-2a0acbb5><h3 class="title" data-v-6afaaa56>Elasticsearch 查询语句使用</h3> <!----> <label id="box" class="inputBox" data-v-6afaaa56><input type="password" value="" data-v-6afaaa56> <span data-v-6afaaa56>Konck! Knock!</span> <button data-v-6afaaa56>OK</button></label> <div class="footer" data-v-6afaaa56><span data-v-6afaaa56><i class="iconfont reco-theme" data-v-6afaaa56></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6afaaa56>vuePress-theme-reco</a></span> <span data-v-6afaaa56><i class="iconfont reco-copyright" data-v-6afaaa56></i> <a data-v-6afaaa56><span data-v-6afaaa56>醉鱼Java</span>
+          
+        <span data-v-6afaaa56>2019 - </span>
+        2024
+      </a></span></div></div> <div data-v-2a0acbb5><div data-v-2a0acbb5><main class="page" style="padding-right:0;"><section style="display:;"><div class="page-title"><h1 class="title">Elasticsearch 查询语句使用</h1> <div data-v-4b52865a><i class="iconfont reco-account" data-v-4b52865a><span data-v-4b52865a>醉鱼Java</span></i> <i class="iconfont reco-date" data-v-4b52865a><span data-v-4b52865a>1/1/2019</span></i> <!----> <i class="tags iconfont reco-tag" data-v-4b52865a><span class="tag-item" data-v-4b52865a>Elasticsearch</span></i></div></div> <div class="theme-reco-content content__default"><p>还是惯例，开头先放章节目录，如果有帮到你的地方，欢迎点赞关注转发，如有错误，欢迎指出，不胜感激</p> <p><img src="Elasticsearch%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.assets%5Cimage-20230715120042657.png" alt="image-20230715120042657"></p> <h1 id="一、环境初始化"><a href="#一、环境初始化" class="header-anchor">#</a> 一、环境初始化</h1> <div class="language-text line-numbers-mode"><pre class="language-text"><code>version: '3.8'
+services:
+  cerebro:
+    image: lmenezes/cerebro:0.8.3
+    container_name: cerebro
+    ports:
+     - &quot;9000:9000&quot;
+    command:
+     - -Dhosts.0.host=http://eshot:9200
+    networks:
+     - elastic
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.1.3
+    container_name: kibana
+    environment:
+      - I18N_LOCALE=zh-CN
+      - XPACK_GRAPH_ENABLED=true
+      - TIMELION_ENABLED=true
+      - XPACK_MONITORING_COLLECTION_ENABLED=&quot;true&quot;
+      - ELASTICSEARCH_HOSTS=http://eshot:9200
+      - server.publicBaseUrl=http://192.168.160.234:5601
+    ports:
+      - &quot;5601:5601&quot;
+    networks:
+      - elastic
+  eshot:
+    image: elasticsearch:8.1.3
+    container_name: eshot
+    environment:
+      - node.name=eshot
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=eshot,eswarm,escold
+      - cluster.initial_master_nodes=eshot,eswarm,escold
+      - bootstrap.memory_lock=true
+      - &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;
+      - xpack.security.enabled=false
+      - node.attr.node_type=hot
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - D:\zuiyuftp\docker\es8.1\eshot\data:/usr/share/elasticsearch/data
+      - D:\zuiyuftp\docker\es8.1\eshot\logs:/usr/share/elasticsearch/logs
+      - D:\zuiyuftp\docker\es8.1\eshot\plugins:/usr/share/elasticsearch/plugins
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+  eswarm:
+    image: elasticsearch:8.1.3
+    container_name: eswarm
+    environment:
+      - node.name=eswarm
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=eshot,eswarm,escold
+      - cluster.initial_master_nodes=eshot,eswarm,escold
+      - bootstrap.memory_lock=true
+      - &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;
+      - xpack.security.enabled=false
+      - node.attr.node_type=warm
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - D:\zuiyuftp\docker\es8.1\eswarm\data:/usr/share/elasticsearch/data
+      - D:\zuiyuftp\docker\es8.1\eswarm\logs:/usr/share/elasticsearch/logs
+      - D:\zuiyuftp\docker\es8.1\eshot\plugins:/usr/share/elasticsearch/plugins
+    networks:
+      - elastic
+  escold:
+    image: elasticsearch:8.1.3
+    container_name: escold
+    environment:
+      - node.name=escold
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=eshot,eswarm,escold
+      - cluster.initial_master_nodes=eshot,eswarm,escold
+      - bootstrap.memory_lock=true
+      - &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;
+      - xpack.security.enabled=false
+      - node.attr.node_type=cold
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - D:\zuiyuftp\docker\es8.1\escold\data:/usr/share/elasticsearch/data
+      - D:\zuiyuftp\docker\es8.1\escold\logs:/usr/share/elasticsearch/logs
+      - D:\zuiyuftp\docker\es8.1\eshot\plugins:/usr/share/elasticsearch/plugins
+    networks:
+      - elastic
+
+# volumes:
+#   eshotdata:
+#     driver: local
+#   eswarmdata:
+#     driver: local
+#   escolddata:
+#     driver: local
+
+networks:
+  elastic:
+    driver: bridge
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br></div></div><h1 id="二、测试数据添加"><a href="#二、测试数据添加" class="header-anchor">#</a> 二、测试数据添加</h1> <p>创建测试索引</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>PUT /zfc-doc-000001
+{
+  &quot;settings&quot;: {
+    &quot;index&quot;:{
+      &quot;number_of_shards&quot;:3,
+      &quot;number_of_replicas&quot;:2
+    }
+  },
+  &quot;mappings&quot;: {
+    &quot;properties&quot;: {
+      &quot;title&quot;:{
+        &quot;type&quot;:&quot;keyword&quot;
+      },
+      &quot;content&quot;:{
+        &quot;type&quot;:&quot;text&quot;
+      },
+      &quot;createTime&quot;:{
+        &quot;type&quot;: &quot;date&quot;,
+        &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis&quot; 
+      },
+      &quot;agreeNum&quot;:{
+        &quot;type&quot;: &quot;integer&quot;
+      },
+      &quot;comment&quot;:{
+        &quot;type&quot;: &quot;nested&quot;,
+        &quot;properties&quot;: {
+          &quot;content&quot;:{
+            &quot;type&quot;:&quot;text&quot;
+          },
+          &quot;name&quot;:{
+            &quot;type&quot;:&quot;keyword&quot;
+          },
+          &quot;time&quot;:{
+            &quot;type&quot;:&quot;date&quot;,
+            &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis&quot;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><h2 id="_2-1、添加测试数据"><a href="#_2-1、添加测试数据" class="header-anchor">#</a> 2.1、添加测试数据</h2> <div class="language-text line-numbers-mode"><pre class="language-text"><code>PUT _bulk
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;1&quot; } }
+{ &quot;title&quot; : &quot;Java知识点大全&quot;,&quot;content&quot;:&quot;java 泛型，基本类型有哪些&quot;,&quot;createTime&quot;: &quot;2022-12-19&quot;,&quot;agreeNum&quot;:&quot;99&quot;,&quot;comment&quot;:{&quot;name&quot;:&quot;张三&quot;,&quot;content&quot;:&quot;学习java必备&quot;,&quot;time&quot;:&quot;2022-12-19 09:00:00&quot;} }
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;2&quot; } }
+{ &quot;title&quot; : &quot;MySQL必知必会&quot;,&quot;content&quot;:&quot;mysql 索引、事务、锁&quot;,&quot;createTime&quot;: &quot;2022-12-18&quot;,&quot;agreeNum&quot;:&quot;500&quot;,&quot;comment&quot;:[{&quot;name&quot;:&quot;张三&quot;,&quot;content&quot;:&quot;学习mysql通俗易懂&quot;,&quot;time&quot;:&quot;2022-12-18 09:00:00&quot;},{&quot;name&quot;:&quot;李四&quot;,&quot;content&quot;:&quot;mysql 入门到精通必备的&quot;,&quot;time&quot;:&quot;2022-12-18 10:00:00&quot;}  ]}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;3&quot; } }
+{ &quot;title&quot; : &quot;Redis运维实战&quot;,&quot;content&quot;:&quot;redis的rdb与aof&quot;,&quot;createTime&quot;: &quot;2022-12-18&quot;,&quot;agreeNum&quot;:&quot;300&quot;,&quot;comment&quot;:[{&quot;name&quot;:&quot;小红&quot;,&quot;content&quot;:&quot;redis的备份&quot;,&quot;time&quot;:&quot;2022-12-18 09:00:00&quot;},{&quot;name&quot;:&quot;李四&quot;,&quot;content&quot;: &quot;redis 入门&quot;,&quot;time&quot;:&quot;2022-12-18 15:00:00&quot;}  ]}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;4&quot; } }
+{ &quot;title&quot; : &quot;Elasticsearch&quot;,&quot;content&quot;:&quot;ES crud&quot;,&quot;createTime&quot;: &quot;2022-12-17&quot;,&quot;agreeNum&quot;:&quot;300&quot;,&quot;comment&quot;:[{&quot;name&quot;:&quot;小红&quot;,&quot;content&quot;:&quot;es的基础SQL语法&quot;,&quot;time&quot;:&quot;2022-12-17 09:00:00&quot;},{&quot;name&quot;:&quot;李四&quot;,&quot;content&quot;: &quot;es 入门&quot;,&quot;time&quot;:&quot;2022-12-18 16:00:00&quot;}  ]}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;5&quot; } }
+{ &quot;title&quot; : &quot;常见MQ知识点汇总&quot;,&quot;content&quot;:&quot;rabbitmq kafka rockmq activemq&quot;,&quot;createTime&quot;: &quot;2022-12-16&quot;,&quot;agreeNum&quot;:&quot;260&quot;,&quot;comment&quot;:[{&quot;name&quot;:&quot;小红&quot;,&quot;content&quot;:&quot;kafka的基础概念&quot;,&quot;time&quot;:&quot;2022-12-18 09:00:00&quot;},{&quot;name&quot;:&quot;李四&quot;,&quot;content&quot;: &quot;事务消息&quot;,&quot;time&quot;:&quot;2022-12-18 15:00:00&quot;}  ]}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;6&quot; } }
+{ &quot;title&quot; : &quot;ES奇淫技巧&quot;,&quot;content&quot;:&quot;玩转es&quot;,&quot;createTime&quot;: &quot;2022-12-18&quot;,&quot;agreeNum&quot;:&quot;600&quot;,&quot;comment&quot;:[{&quot;name&quot;:&quot;小红1号&quot;,&quot;content&quot;:&quot;es的基础SQL语法&quot;,&quot;time&quot;:&quot;2022-12-17 09:00:00&quot;},{&quot;name&quot;:&quot;李四1号&quot;,&quot;content&quot;: &quot;es 入门&quot;,&quot;time&quot;:&quot;2022-12-18 16:00:00&quot;}  ]}
+{ &quot;index&quot; : { &quot;_index&quot; : &quot;zfc-doc-000001&quot;, &quot;_id&quot; : &quot;7&quot; } }
+{ &quot;title&quot; : &quot;ES&quot;,&quot;content&quot;:&quot;真的666&quot;,&quot;createTime&quot;: &quot;2022-12-17&quot;,&quot;agreeNum&quot;:&quot;300&quot;,&quot;comment&quot;:[{&quot;name&quot;:&quot;小红1号&quot;,&quot;content&quot;:&quot;es的基础SQL语法&quot;,&quot;time&quot;:&quot;2022-12-17 09:00:00&quot;},{&quot;name&quot;:&quot;李四1号&quot;,&quot;content&quot;: &quot;es 入门&quot;,&quot;time&quot;:&quot;2022-12-18 16:00:00&quot;}  ]}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h1 id="三、标准查询语句使用"><a href="#三、标准查询语句使用" class="header-anchor">#</a> 三、标准查询语句使用</h1> <p>根据一个字段进行检索，假如我们要搜索<code>content</code>包含<code>ES</code>的文档，我们的查询语句可以这样写</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;:{
+      &quot;content&quot;:&quot;ES&quot;
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>上面这个语句的意思简单理解就是查询<code>content</code>字段中包含<code>ES</code>的文档。在深一层次来看，首先查看<code>content</code>字段的类型，通过查看上面的创建索引语句可以知道，<code>content</code>字段定义的是<code>text</code>类型，所以<code>Elasticsearch</code>会对<code>content</code>字段进行分词检索，返回文档中出现<code>es</code>的，除了上面这种写法外还可以使用如下几种方式进行检索</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code># 分词匹配es或者crud的文档
+GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;:{
+      &quot;content&quot;:&quot;ES crud&quot;
+    }
+  }
+}
+# 短语查询分词es
+GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match_phrase&quot;:{
+      &quot;content&quot;:&quot;es&quot;
+    }
+  }
+}
+# 前缀检索分词es
+GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;prefix&quot;:{
+      &quot;content&quot;:&quot;es&quot;
+    }
+  }
+}
+# 模糊匹配分词es
+GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;fuzzy&quot;:{
+      &quot;content&quot;:&quot;es*&quot;
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><p>为了查询结果的更精确，增加<code>title</code>字段为<code>ES</code>的约束条件，需要注意大小写，因为<code>title</code>字段类型为<code>keyword</code>，不区分大小写的，所以查询语句可以这样写</p> <p>该语句返回<code>content</code>字段中分词匹配词语<code>ES(不区分大小写)</code>的文档或者<code>title</code>字段精确匹配<code>ES</code>的文档</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;multi_match&quot;: {
+      &quot;query&quot;: &quot;ES&quot;,
+      &quot;fields&quot;:[&quot;content&quot;,&quot;title&quot;]
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>一个简单的检索语句通过上述几种方式即可实现了，但是实际工作中，肯定还是用到分词器的，下面就以常用的<code>IK分词器</code>进行说明</p> <h2 id="_3-1、查询时指定分词器"><a href="#_3-1、查询时指定分词器" class="header-anchor">#</a> 3.1、查询时指定分词器</h2> <p>首先是第一种查询时指定分词器的形式进行检索</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET /zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;content&quot;: {
+        &quot;query&quot;: &quot;es&quot;,
+        &quot;analyzer&quot;: &quot;ik_max_word&quot;
+      }
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>通过上面指定分词器的形式，我们在查询时就可以使用<code>ik_max_word</code>来作为检索分词来处理了，我们也可以在创建索引时增加字段分词的配置，方便检索时默认使用指定分词器检索，下面就是创建索引指定分词器的步骤</p> <h2 id="_3-2、初始化默认分词器"><a href="#_3-2、初始化默认分词器" class="header-anchor">#</a> 3.2、初始化默认分词器</h2> <p>1、删除刚才创建的索引</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>DELETE zfc-doc-000001
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>2、修改<code>content</code>字段，加入分词器<code>ik_max_word</code>，修改部分如下</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>      &quot;content&quot;:{
+        &quot;type&quot;:&quot;text&quot;,
+        &quot;analyzer&quot;: &quot;ik_max_word&quot;
+      }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>完整的语句如下所示</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>PUT /zfc-doc-000001
+{
+  &quot;settings&quot;: {
+    &quot;index&quot;:{
+      &quot;number_of_shards&quot;:3,
+      &quot;number_of_replicas&quot;:2
+    }
+  },
+  &quot;mappings&quot;: {
+    &quot;properties&quot;: {
+      &quot;title&quot;:{
+        &quot;type&quot;:&quot;keyword&quot;
+      },
+      &quot;content&quot;:{
+        &quot;type&quot;:&quot;text&quot;,
+        &quot;analyzer&quot;: &quot;ik_max_word&quot;
+      },
+      &quot;createTime&quot;:{
+        &quot;type&quot;: &quot;date&quot;,
+        &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis&quot; 
+      },
+      &quot;agreeNum&quot;:{
+        &quot;type&quot;: &quot;integer&quot;
+      },
+      &quot;comment&quot;:{
+        &quot;type&quot;: &quot;nested&quot;,
+        &quot;properties&quot;: {
+          &quot;content&quot;:{
+            &quot;type&quot;:&quot;text&quot;
+          },
+          &quot;name&quot;:{
+            &quot;type&quot;:&quot;keyword&quot;
+          },
+          &quot;time&quot;:{
+            &quot;type&quot;:&quot;date&quot;,
+            &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis&quot;
+          }
+        }
+      }
+    }
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div><p>通过上面语句创建完索引之后，<code>content</code>字段就是使用<code>ik_max_word</code>分词的了，这样使用普通的<code>match</code>查询即可，这里也就不再演示了</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;:{
+      &quot;content&quot;:&quot;es&quot;
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h1 id="四、查询的进阶使用"><a href="#四、查询的进阶使用" class="header-anchor">#</a> 四、查询的进阶使用</h1> <h2 id="_4-1、分页查询"><a href="#_4-1、分页查询" class="header-anchor">#</a> 4.1、分页查询</h2> <p>我们可以使用<code>from</code>和<code>size</code>参数配置使用，其中<code>from</code>为要跳过的文档数量，<code>size</code>为要返回的文档数量</p> <p>在全部文档中，过滤前两个文件，从第<strong>3</strong>个文档开始，返回<strong>10</strong>个文档</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {
+    }
+  },
+  &quot;size&quot;: 10,
+  &quot;from&quot;: 2
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="_4-2、范围查询"><a href="#_4-2、范围查询" class="header-anchor">#</a> 4.2、范围查询</h2> <p>对于范围查询，我们可以使用<code>range</code>查询，最简单的参数就是<code>gte</code>与<code>lte</code></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;range&quot;: {
+      &quot;agreeNum&quot;: {
+        &quot;gte&quot;: 100,
+        &quot;lte&quot;: 300
+      }
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h2 id="_4-3、聚合"><a href="#_4-3、聚合" class="header-anchor">#</a> 4.3、聚合</h2> <p>聚合语法的使用就是对一个文档中某个字段的统计，类似与关系型数据库中的先<code>group</code> 在<code>count</code>一个字段的值，具体使用如下，如果我们不想返回都是哪些数据参与了聚合，还可以加入参数<code>&quot;size&quot;:0</code>，如下语句中，其中<code>my_aggs</code>是自定义聚合的名称，<code>terms</code>是聚合的类型，<code>field</code>是要对哪个字段进行聚合，需要注意的是<code>text</code>类型是无法使用聚合的，<code>terms</code>下面的<code>&quot;size&quot;:10</code>是指如果聚合桶的数量超过<strong>10</strong>的话只取前10个</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  },
+  &quot;size&quot;: 0, 
+  &quot;aggs&quot;: {
+    &quot;my_aggs&quot;: {
+      &quot;terms&quot;: {
+        &quot;field&quot;: &quot;title&quot;,
+        &quot;size&quot;: 10
+      }
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><code>Elasticsearch</code>支持多种聚合类型，每种类型都有不同的功能和用途。以下是一些常用的聚合类型及其含义：</p> <ol><li><p><strong>Terms Aggregation（词条聚合）</strong>：根据指定字段的值进行分组，并计算每个分组的文档数量。可以用于统计某个字段的分布情况。</p></li> <li><p><strong>Range Aggregation（范围聚合）</strong>：将指定字段的值划分为不同的范围，并计算每个范围内的文档数量。可用于分析数值型字段的分布情况。</p></li> <li><p><strong>Date Histogram Aggregation（日期直方图聚合）</strong>：根据指定日期字段的值进行分组，并按照时间间隔（如按月、按周）计算每个时间段内的文档数量。</p></li> <li><p><strong>Histogram Aggregation（直方图聚合）</strong>：根据指定字段的值进行分组，并按照指定的间隔计算每个分组的文档数量。适用于分析数值型字段的分布情况。</p></li> <li><p><strong>Average Aggregation（平均值聚合）</strong>：计算指定字段的平均值。</p></li> <li><p><strong>Sum Aggregation（求和聚合）</strong>：计算指定字段的总和。</p></li> <li><p><strong>Min Aggregation（最小值聚合）</strong>：计算指定字段的最小值。</p></li> <li><p><strong>Max Aggregation（最大值聚合）</strong>：计算指定字段的最大值。</p></li> <li><p><strong>Cardinality Aggregation（基数聚合）</strong>：计算指定字段的唯一值的数量。</p></li> <li><p><strong>Stats Aggregation（统计聚合）</strong>：计算指定字段的统计信息，包括最小值、最大值、平均值、总和和文档数量。</p></li></ol> <p>这只是一小部分聚合类型的示例，<code>Elasticsearch</code>还提供了其他类型的聚合，如<code>Percentiles Aggregation</code>（百分位数聚合）、<code>Extended Stats Aggregation</code>（扩展统计聚合）等。你可以根据你的具体需求选择适合的聚合类型，并结合查询条件和其他聚合层级来进行复杂的数据分析和统计。</p> <blockquote><p>如果你看到这了，欢迎点个关注、后续推文深度只会越来越深，期待你的关注，让我们共同进步</p></blockquote> <p><code>elasticsearch</code>还支持嵌套聚合，只需要在<code>aggs</code>里面在写一个<code>aggs</code>即可，可以参考如下写法，<strong>对该示例不符合</strong>，仅供参考</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET /zfc-doc-000001/_search
+{
+  &quot;size&quot;: 0,
+  &quot;aggs&quot;: {
+    &quot;my_aggs1&quot;: {
+      &quot;terms&quot;: {
+        &quot;field&quot;: &quot;field1&quot;
+      },
+      &quot;aggs&quot;: {
+        &quot;my_aggs2&quot;: {
+          &quot;terms&quot;: {
+            &quot;field&quot;: &quot;field2&quot;
+          },
+          &quot;aggs&quot;: {
+            &quot;avg_value&quot;: {
+              &quot;avg&quot;: {
+                &quot;field&quot;: &quot;numeric_field&quot;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h2 id="_4-4、高亮结果"><a href="#_4-4、高亮结果" class="header-anchor">#</a> 4.4、高亮结果</h2> <p>如果我们想在返回结果中对命中的关键词进行高亮显示可以使用如下语句</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;content&quot;: &quot;ES&quot;
+    }
+  },
+  &quot;highlight&quot;: {
+    &quot;fields&quot;: {
+      &quot;content&quot;: {}
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>默认是在返回结果中加入<code>em</code>标签，如果我们想自定义标签可以使用如下语句，如下示例是改为了<code>strong</code>标签</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;content&quot;: &quot;es&quot;
+    }
+  },
+  &quot;highlight&quot;: {
+    &quot;pre_tags&quot;: [&quot;&amp;lt;strong&gt;&quot;],
+    &quot;post_tags&quot;: [&quot;&amp;lt;/strong&gt;&quot;],
+    &quot;fields&quot;: {
+      &quot;content&quot;: {}
+    }
+  }
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h1 id="五、修改算分提升匹配度"><a href="#五、修改算分提升匹配度" class="header-anchor">#</a> 五、修改算分提升匹配度</h1> <h2 id="_5-1、function-score"><a href="#_5-1、function-score" class="header-anchor">#</a> 5.1、function_score</h2> <p>假设我们的原始查询语句如下</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;content&quot;: &quot;es&quot;
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>返回结果如下，ID为<strong>6</strong>的排在了第一位</p> <p><img src="Elasticsearch%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.assets%5Cimage-20230715110507179.png" alt="image-20230715110507179"></p> <p>如果我们想让ID为4的排在第一位如何修改查询语句呢，那么我们可以使用<code>function_score</code>来增加权重算分，比如使用<code>title</code>中匹配<code>Elasticsearch</code>的</p> <blockquote><p>此处是为举例，要学习思想，以后工作中才有更好的思路</p></blockquote> <p>修改之后的查询语句如下</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;function_score&quot;: {
+      &quot;query&quot;: {
+        &quot;match&quot;: {
+          &quot;content&quot;: &quot;es&quot;
+        }
+      },
+      &quot;functions&quot;: [
+        {
+          &quot;filter&quot;: {
+            &quot;term&quot;: {
+              &quot;title&quot;: &quot;Elasticsearch&quot;
+            }
+          },
+        &quot;weight&quot;:2
+        }
+      ],
+      &quot;score_mode&quot;: &quot;multiply&quot;,
+      &quot;boost_mode&quot;: &quot;multiply&quot;
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>可以看到，显示结果已经发生改变，ID为<strong>4</strong>的算分已经高于ID为<strong>6</strong>的算分了</p> <p><img src="Elasticsearch%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.assets%5Cimage-20230715110826660.png" alt="image-20230715110826660"></p> <p>其中，<code>query</code>参数用于指定正常的查询语句，<code>functions</code>参数用于定义一个或多个函数来修改文档得分</p> <p><code>score_mode</code>和<code>boost_mode</code>是用于控制<code>function_score</code>查询中如何计算文档得分和如何影响文档的排名的参数。</p> <ul><li><p><code>score_mode</code>:参数用于指定多个函数如何组合计算得分。它支持以下取值：</p> <ul><li><code>multiply</code>: 将所有函数的得分相乘</li> <li><code>sum</code>: 将所有函数的得分相加</li> <li><code>avg</code>: 将所有函数的得分求平均值</li> <li><code>max</code>: 取所有函数的最大得分作为文档得分</li> <li><code>min</code>: 取所有函数的最小得分作为文档得分</li> <li><code>first</code>: 取第一个函数的得分作为文档得分</li> <li><code>weighted_sum</code>: 将所有函数的得分相加，并乘以给定的权重系数。</li></ul></li> <li><p><code>boost_mode</code>参数用于指定得分如何影响文档的排名。它支持以下取值：</p> <ul><li><code>multiply</code>: 将得分与文档的原始得分相乘</li> <li><code>replace</code>: 使用得分替换文档的原始得分</li> <li><code>sum</code>: 将得分与文档的原始得分相加</li> <li><code>avg</code>: 将得分与文档的原始得分求平均值</li> <li><code>max</code>: 取得分和文档的原始得分的最大值作为文档得分</li> <li><code>min</code>: 取得分和文档的原始得分的最小值作为文档得分</li></ul></li></ul> <p>请注意，<code>score_mode</code>和<code>boost_mode</code>参数的取值会影响文档得分和排名的计算方式，需要根据具体的需求来选择合适的取值。另外，<code>function_score</code>查询中可以定义多个函数来修改文档得分，也可以使用<code>weight</code>函数来给定固定的分值，这些函数的组合和参数设置可能会对结果产生重要影响。</p> <p>除了使用上述方式外，还可以使用如下几种方式进行算分的修改</p> <h2 id="_5-2、boosting"><a href="#_5-2、boosting" class="header-anchor">#</a> 5.2、Boosting</h2> <p>如下是匹配<code>content</code>字段中包含<code>es</code>的，对<code>content</code>中包含<code>es</code>的进行减分</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;boosting&quot;: {
+      &quot;positive&quot;: {
+        &quot;term&quot;: {
+          &quot;content&quot;: &quot;es&quot;
+        }
+      },
+      &quot;negative&quot;: {
+        &quot;term&quot;: {
+          &quot;content&quot;: &quot;玩转&quot;
+        }
+      },
+      &quot;negative_boost&quot;: 0.5
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="_5-3、field-value-factor"><a href="#_5-3、field-value-factor" class="header-anchor">#</a> 5.3、Field Value Factor</h2> <blockquote><p>需要注意的是，<code>field_value_factor</code>函数用于根据字段的数值进行打分计算，要求字段是数值类型的。</p></blockquote> <p>我们使用<code>Field Value Factor</code>来根据字段<code>agreeNum</code>的值对包含<code>ES</code>关键词的文档进行加权。使用<code>log1p</code>修饰符可以将字段值的对数应用于计算</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;content&quot;: &quot;ES&quot;
+    }
+  },
+  &quot;sort&quot;: [
+    {
+      &quot;_score&quot;: {
+        &quot;order&quot;: &quot;desc&quot;
+      }
+    }
+  ]
+}
+GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;function_score&quot;: {
+      &quot;query&quot;: {
+        &quot;match&quot;: {
+          &quot;content&quot;: &quot;ES&quot;
+        }
+      },
+      &quot;field_value_factor&quot;: {
+        &quot;field&quot;: &quot;agreeNum&quot;,
+        &quot;factor&quot;: 0.1,
+        &quot;modifier&quot;: &quot;log1p&quot;
+      }
+    }
+  },
+  &quot;sort&quot;: [
+    {
+      &quot;_score&quot;: {
+        &quot;order&quot;: &quot;asc&quot;
+      }
+    }
+  ]
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><p>其中<code>field_value_factor</code>的参数含义如下</p> <ul><li><code>field</code>: 要计算得分的字段名</li> <li><code>factor</code>: 一个乘数，用于缩放字段值的影响。可以使用任何非负数值。假如<code>factor</code>的值是<strong>0.1</strong>，表示字段值的影响将会被减小</li> <li><code>modifier</code>: 一个修饰符，用于对数值进行修改以调整得分
+<ul><li><code>none</code>：不应用任何修饰符，默认情况下为1</li> <li><code>log</code>：对计算结果取对数，以减少较大值的影响</li> <li><code>log1p</code>：与<code>log</code>类似，但在计算结果前先加1，可以避免对0值进行对数运算</li></ul></li></ul> <h2 id="_5-4、script-score"><a href="#_5-4、script-score" class="header-anchor">#</a> 5.4、Script Score</h2> <p>我们可以使用<code>script_score</code>来自定义计算得分，此处仅为示例，具体可以根据自己的业务来修改。具体计算分可以通过<code>explain</code>来查看验证</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;explain&quot;: true, 
+  &quot;query&quot;: {
+    &quot;function_score&quot;: {
+      &quot;query&quot;: {
+        &quot;match&quot;: {
+          &quot;content&quot;: &quot;es&quot;
+        }
+      },
+      &quot;script_score&quot;: {
+        &quot;script&quot;: {
+          &quot;source&quot;: &quot;Math.log(doc['agreeNum'].value + 10)&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="_5-5、decay-functions"><a href="#_5-5、decay-functions" class="header-anchor">#</a> 5.5、Decay Functions</h2> <p>我们使用Gauss衰减函数根据字段<code>createTime</code>的值来衰减文档的得分。在这个例子中，以<code>2022-12-01</code>为中心，每过<code>10</code>天，得分将衰减一半。参考结果可以使用下面两个查询语句对应</p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;content&quot;: &quot;es&quot;
+    }
+  }
+}
+
+GET zfc-doc-000001/_search
+{
+  &quot;query&quot;: {
+    &quot;function_score&quot;: {
+      &quot;query&quot;: {
+        &quot;match&quot;: {
+          &quot;content&quot;: &quot;es&quot;
+        }
+      },
+      &quot;functions&quot;: [
+        {
+          &quot;gauss&quot;: {
+            &quot;createTime&quot;: {
+              &quot;origin&quot;: &quot;2022-12-01&quot;,
+              &quot;scale&quot;: &quot;10d&quot;
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><h1 id="六、filter"><a href="#六、filter" class="header-anchor">#</a> 六、Filter</h1> <p><code>Filter</code>和<code>Query</code>是<code>Elasticsearch</code>中用于检索和过滤数据的两种不同方式，它们各自有一些优缺点</p> <p><strong>Filter的优点：</strong></p> <ol><li><strong>性能更高</strong>：Filter对结果进行缓存，可以重复使用缓存结果，提高查询的性能。当使用相同的过滤条件进行多次查询时，Filter可以避免重复计算</li> <li><strong>精确性更高</strong>：Filter对结果进行精确匹配，只返回满足过滤条件的文档，不计算相关性得分。这使得Filter非常适用于那些不需要考虑相关性的精确匹配查询</li> <li><strong>可缓存性</strong>：Filter的结果可以被缓存，可以在后续的查询中重复使用。如果数据没有变化，那么缓存的结果可以直接返回，减少了计算的开销</li></ol> <p><strong>Filter的缺点：</strong></p> <ol><li><strong>无法计算相关性得分</strong>：Filter不计算相关性得分，因此无法进行排序或评分。如果需要根据文档的相关性进行排序或评分，就需要使用Query</li> <li><strong>不支持全文搜索</strong>：Filter只能进行精确匹配，无法进行全文搜索。如果需要进行全文搜索，就需要使用Query</li></ol> <p><strong>Query的优点：</strong></p> <ol><li><strong>支持全文搜索</strong>：Query可以进行全文搜索，可以对文本进行分词和相关性评分，返回与查询条件最匹配的文档</li> <li><strong>支持排序和评分</strong>：Query可以根据文档的相关性得分进行排序和评分，使得搜索结果更具有相关性</li> <li><strong>灵活性更高</strong>：Query提供了更多的查询选项和查询语法，可以进行复杂的查询操作，包括布尔逻辑、范围查询、模糊查询等</li></ol> <p><strong>Query的缺点：</strong></p> <ol><li><strong>性能相对较低</strong>：Query需要计算相关性得分，并对所有文档进行评分和排序，因此相对于Filter而言，性能较低</li> <li><strong>无法缓存结果</strong>：由于Query计算的是相关性得分，结果会随着数据的变化而变化，无法进行缓存和重复使用</li></ol> <p>综上所述，Filter适用于需要精确匹配和高性能的查询场景，而Query适用于需要全文搜索、排序和评分的场景。根据具体的需求和性能要求，选择合适的过滤方式可以提高查询的效率和准确性</p> <h1 id="补充"><a href="#补充" class="header-anchor">#</a> 补充</h1> <p><code>Elasticsearch</code>的查询<code>DSL</code>语句中有很多常用的参数，用于指定查询的条件和行为。以下是一些常用的查询：</p> <ol><li><code>match</code>: 使用<code>match</code>查询参数可以执行全文本搜索，它会将查询字符串分析为词项并与文档进行匹配</li> <li><code>term</code>: <code>term</code>查询参数用于精确匹配某个字段的值，不进行分析</li> <li><code>bool</code>: <code>bool</code>查询参数用于组合多个查询条件，如<code>must</code>（与操作）、<code>should</code>（或操作）、<code>must_not</code>（非操作）</li> <li><code>range</code>: <code>range</code>查询参数用于匹配指定范围内的值，可以用于数值、日期等类型的字段</li> <li><code>exists</code>: <code>exists</code>查询参数用于匹配包含指定字段的文档</li> <li><code>prefix</code>: <code>prefix</code>查询参数用于匹配以指定前缀开头的字段值</li> <li><code>wildcard</code>:<code>wildcard</code>查询参数用于支持通配符匹配，如使用<code>*</code>和<code>?</code>进行模糊匹配</li> <li><code>fuzzy</code>: <code>fuzzy</code>查询参数用于执行模糊匹配，可以处理拼写错误或相似度较高的查询字符串</li> <li><code>match_phrase</code>: <code>match_phrase</code>查询参数用于匹配包含指定短语的文档</li> <li><code>multi_match</code>: <code>multi_match</code>查询参数用于在多个字段中执行全文本搜索</li> <li><code>terms</code>:<code>terms</code>查询是一种多词项查询，用于查找包含给定词项中任何一个的文档</li> <li><code>match_phrase_prefix</code>:<code>match_phrase_prefix</code>查找包含指定短语前缀的文档。它可以通过指定一个短语前缀和一个最大扩展长度来实现</li> <li><code>regexp</code>:<code>regexp</code>是使用正则表达式匹配文档的，能够在文本字段中匹配符合正则表达式的文本，从而检索文档</li></ol></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">9/18/2024, 1:53:43 PM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:0;" data-v-ff035a48 data-v-2a0acbb5></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-2a01419c data-v-2a01419c><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-2a01419c><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-2a01419c></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-2a01419c></path></svg></div></div></div>
+    <script src="/assets/js/app.a2135f4c.js" defer></script><script src="/assets/js/3.efa71374.js" defer></script><script src="/assets/js/1.8106763a.js" defer></script><script src="/assets/js/21.e3503909.js" defer></script>
+  </body>
+</html>
