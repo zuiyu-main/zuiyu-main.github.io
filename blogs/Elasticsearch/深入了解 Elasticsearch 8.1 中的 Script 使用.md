@@ -6,7 +6,7 @@ tags:
 categories:
  -  Elasticsearch
 ---
-![image-20231025100819430](./深入了解%20Elasticsearch%208.1%20中的%20Script%20使用.assets/image-20231025100819430.png)
+![image-20231025100819430](深入了解%20Elasticsearch%208.1%20中的%20Script%20使用.assets/image-20231025100819430.png)
 
 # 一、什么是 Elasticsearch Script？
 
