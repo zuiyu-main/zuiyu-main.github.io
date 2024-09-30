@@ -6,8 +6,8 @@ tags:
 categories:
  -  Elasticsearch
 ---
-<img src="科普一下Elasticsearch中BM25算法的使用.assets\image-20230716162434175.png" alt="image-20230716162434175" style="zoom:37%;" />
 
+![](科普一下Elasticsearch中BM25算法的使用.assets\image-20230716162434175.png)
 首先还是先了解几个概念，Elasticsearch是一个开源的分布式搜索和分析引擎，它使用一系列算法来计算文档的相关性分数（relevance score）。这些算法用于确定查询与文档的匹配程度，以便按相关性对搜索结果进行排序。以下是Elasticsearch中常用的算分算法：
 
 1. 词频（Term Frequency，TF）：TF算法根据查询词在文档中出现的频率来计算分数。出现频率越高，分数越高。

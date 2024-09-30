@@ -32,13 +32,13 @@ categories:
   
 * 3、导入idea，选择导入
 
-  ![image-20220321210331275](https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321210331275.png)
+  ![image-20220321210331275](./0320/image-20220321210331275.png)
   
   
   
   选中 build.gradle ，idea会提示是否导入gradle项目，选择是
   
-  ![image-20220321210428828](https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321210428828.png)
+  ![image-20220321210428828](./0320/image-20220321210428828.png)
   
   
 
@@ -50,14 +50,11 @@ categories:
   ```
 
 * 5、打包成功之后，到`elasticsearch/distribution/packages`下找到自己对应系统的发行版文件
-
-  <img src="https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211004360.png" alt="image-20220321211004360" style="zoom:100%;" />
+  ![image-20220321211004360](./0320/image-20220321211004360.png)
 
 * 6、解压`elasticsearch-oss-7.4.3-SNAPSHOT-x86_64.rpm`,然后在`elasticsearch` 同级别目录下新建文件夹`home`,并把解压后的文件放到home文件夹下
-
-  <img src="https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211247410.png" alt="image-20220321211247410" style="zoom:100%;" />
-
-  <img src="https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211314101.png" alt="image-20220321211314101" style="zoom:100%;" />
+  ![image-20220321211247410](./0320/image-20220321211247410.png)
+  ![image-20220321211314101](./0320/image-20220321211314101.png)
 
 * 7、找到`elasticsearch/server/build.gradle`,修改 compileOnly 改为compile,详细信息查看下面
 
@@ -67,11 +64,11 @@ categories:
 
 * 8、idea设置项目JDK与gradle版本
 
-  ![image-20220321211607282](https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211607282.png)
+  ![image-20220321211607282](./0320/image-20220321211607282.png)
 
   gradle版本与项目jdk保持一致
 
-  ![image-20220321211756337](https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211756337.png)
+  ![image-20220321211756337](./0320/image-20220321211756337.png)
 
 * 9、指定刚才新建的home文件夹地址中的配置文件与数据存放地址，参数内容如下
 
@@ -92,9 +89,9 @@ categories:
 
   
 
-  ![image-20220321211905970](https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211905970.png)
+  ![image-20220321211905970](./0320/image-20220321211905970.png)
 
-  ![image-20220321211939322](https://gitee.com/cuixt/photo/raw/master/uPic/2022%20/03%20/image-20220321211939322.png)
+  ![image-20220321211939322](./0320/image-20220321211939322.png)
 
 * 10、到这，如果还不能启动，那就尽情的谷歌与百度吧，也欢迎留言一起讨论
 

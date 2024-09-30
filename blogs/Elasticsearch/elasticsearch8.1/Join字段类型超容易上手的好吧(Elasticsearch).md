@@ -280,7 +280,7 @@ GET _nodes/stats/indices/fielddata?human&fields=join_field#goods
 
 * 同样的，细心的同学已经看到了，上文已经标记了孙子文档，对的，你没看错就是孙子文档，三级的层级，级别可以更深，但是`Elasticsearch`不建议很深的层次，毕竟`Join`很消耗性能的，层级再深点没法用了,下面就是多级别的语句测试，此时他们三者的关系就如下所示
 
-  ![image-20220915232907370](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/Join字段类型超容易上手的好吧(Elasticsearch).assets/image-20220915232907370.png)
+  ![image-20220915232907370](Join字段类型超容易上手的好吧(Elasticsearch).assets/image-20220915232907370.png)
 
   ```text
   DELETE my-index-000001

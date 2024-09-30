@@ -6,7 +6,7 @@ tags:
 categories:
  -  Elasticsearch
 ---
-![image-20231025100819430](深入了解 Elasticsearch 8.1 中的 Script 使用.assets\image-20231025100819430.png)
+![image-20231025100819430](./深入了解%20Elasticsearch%208.1%20中的%20Script%20使用.assets/image-20231025100819430.png)
 
 # 一、什么是 Elasticsearch Script？
 
@@ -16,7 +16,7 @@ categories:
 
 支持多种脚本语言，包括 **Painless**、**Expression**、**Mustache**、**Java**等，其中默认的是**Painless**。
 
-![image-20231024120432403](深入了解 Elasticsearch 8.1 中的 Script 使用.assets\image-20231024120432403.png)
+![image-20231024120432403](深入了解%20Elasticsearch%208.1%20中的%20Script%20使用.assets\image-20231024120432403.png)
 
 # 三、Painless 脚本的使用
 

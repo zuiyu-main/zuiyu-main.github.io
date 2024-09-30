@@ -551,7 +551,7 @@ PUT /example
 
 * 插入一条测试数据，使用地图获取故宫博物院的坐标信息（位置信息与截图稍微有微微的偏差，为后期补充图片）
 
-  ![image-20220826213039464](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826213039464.png)
+  ![image-20220826213039464](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826213039464.png)
 
   ```text
   PUT /my_locations/_doc/1
@@ -570,7 +570,7 @@ PUT /example
 
 * 定义下图所示的边界范围，矩形框内查询,`top_left`就是**顶点1**，`bottom_right`就是**顶点2**
 
-  ![image-20220826220231873](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220231873.png)
+  ![image-20220826220231873](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220231873.png)
 
   ```text
   GET my_locations/_search
@@ -601,7 +601,7 @@ PUT /example
 
   查看返回结果可以获取到刚才插入的故宫博物院地点信息
 
-  ![image-20220826213015079](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826213015079.png)
+  ![image-20220826213015079](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826213015079.png)
 
 ### Geoshape 值的匹配
 
@@ -644,7 +644,7 @@ PUT /my_geoshapes/_doc/1
   }
   ```
   
-  ![image-20220826220300670](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220300670.png)
+  ![image-20220826220300670](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220300670.png)
 
 * 查询范围内形状匹配的值
 
@@ -677,11 +677,11 @@ PUT /my_geoshapes/_doc/1
   
   上面的`top_left`对应的就是图中的**顶点1**，`bottom_right`对应的就是图中的**顶点2**
   
-  ![image-20220826220314429](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220314429.png)
+  ![image-20220826220314429](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220314429.png)
 
   检索结果如下
   
-  ![image-20220826220431699](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220431699.png)
+  ![image-20220826220431699](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220826220431699.png)
 
 
 ## Geo-distance query（圆形过滤）
@@ -758,7 +758,7 @@ PUT /my_geoshapes/_doc/1
   
   ```
 
-  ![image-20220827140241176](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220827140241176.png)
+  ![image-20220827140241176](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220827140241176.png)
 
 * 查询故宫博物院周边`5公里`的文档信息
 
@@ -829,7 +829,7 @@ PUT /my_geoshapes/_doc/1
   }
   ```
 
-  ![image-20220828133631885](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220828133631885.png)
+  ![image-20220828133631885](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220828133631885.png)
 
 ### 扩展知识
 
@@ -1041,7 +1041,7 @@ GET my_locations/_search
 }
 ```
 
-![image-20220828150654638](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/elasticsearch8.1/一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220828150654638.png)
+![image-20220828150654638](一文彻底理解Elasticsearch中Geo数据类型.assets/image-20220828150654638.png)
 
 同样的自定义查询语句也可以接收【字符串,数组，geohash】的地点信息
 

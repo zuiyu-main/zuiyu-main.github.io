@@ -45,7 +45,7 @@ logs-nginx.access-prod
 
 数据流由一个或多个**隐藏的**、自动生成的索引组成
 
-![image-20221206184842518](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/es8.1认证/5、Elasticsearch创建数据流索引.assets/image-20221206184842518.png)
+![image-20221206184842518](./5、Elasticsearch创建数据流索引.assets/image-20221206184842518.png)
 
 数据流需要有匹配的索引模版，该模版配置索引支持的映射和设置
 
@@ -57,7 +57,7 @@ logs-nginx.access-prod
 
 当我们向数据流提交读请求时，该流会将请求路由到支持的所有索引上
 
-![image-20221206190636027](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/es8.1认证/5、Elasticsearch创建数据流索引.assets/image-20221206190636027.png)
+![image-20221206190636027](./5、Elasticsearch创建数据流索引.assets/image-20221206190636027.png)
 
 # 写入请求
 
@@ -65,7 +65,7 @@ logs-nginx.access-prod
 
 对于限制写入的其他索引，我们也不能进行如下操作：`Clone`、`Delete`、`Shrink`、`Split`
 
-![image-20221206190647654](/Users/cxt/Documents/personal/wechataccount/doc/database/elasticsearch/es8.1认证/5、Elasticsearch创建数据流索引.assets/image-20221206190647654.png)
+![image-20221206190647654](./5、Elasticsearch创建数据流索引.assets/image-20221206190647654.png)
 
 # Rollover
 

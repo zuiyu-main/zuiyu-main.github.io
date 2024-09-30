@@ -1,6 +1,6 @@
 
 ---
-title: Elasticsearch snapshots快照使用教程
+title: Elasticsearch snapshots 快照使用教程
 date: 2019-01-01
 tags:
  - Elasticsearch
