@@ -1,5 +1,5 @@
 ---
-title: vuepress-theme-reco
+title: 启动教程
 date: 2019-04-09
 ---
 
