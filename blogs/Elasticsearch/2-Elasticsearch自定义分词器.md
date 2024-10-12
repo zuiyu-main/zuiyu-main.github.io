@@ -2,9 +2,9 @@
 title: Elasticsearch自定义分词器
 date: 2020-07-29
 tags:
-- Elasticsearch
+  - Elasticsearch
 categories:
-- Elasticsearch
+  - Elasticsearch
 ---
 
 # 本文环境

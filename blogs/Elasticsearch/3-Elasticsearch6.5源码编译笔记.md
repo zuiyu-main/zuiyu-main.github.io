@@ -1,11 +1,11 @@
 ---
 title: Elasticsearch6.5源码编译笔记
-date: 2020-07-29
+date: 2021-04-03
 tags:
-- Elasticsearch
-- 源码编译
+  - Elasticsearch
+  - 源码编译 
 categories:
-- Elasticsearch
+  - Elasticsearch
 ---
 
 Elasticsearch 源码编译笔记
@@ -159,13 +159,13 @@ https://www.elastic.co/blog/how-to-debug-elasticsearch-source-code-in-intellij-i
 
     注意：此处导入方式可使用idea import Project ，但是本人在使用中发现导入不进去，然后使用open elasticsearch.ipr的方式可以正常启动，这个看个人情况吧
 
-    ![openes](../../images/openes.png)
+    ![openes](../../images/6.5源码/openes.png)
 
   * 导入之后选择右上角Project Structure ，设置项目JDK为11
 
   * 打开gradle设置，设置gradle 中Grad 了JVM为 Use Project JDK
 
-    ![gradle设置](images/setter-gradle.png)
+    ![gradle设置](../../images/6.5源码/setter-gradle.png)
 
   
 
@@ -224,7 +224,7 @@ https://www.elastic.co/blog/how-to-debug-elasticsearch-source-code-in-intellij-i
   
   * 设置include dependencies
   
-    ![Es启动配置](/Users/cxt/Documents/个人/个人文章/image/setter-run-es.png)
+    ![Es启动配置](../../images/6.5源码/setter-run-es.png)
   
   * 启动es
   
@@ -300,12 +300,8 @@ https://www.elastic.co/blog/how-to-debug-elasticsearch-source-code-in-intellij-i
 
 
 
-# 7
-
-
 
 # 6.5 API 调试
-
 
 
 ## Index
@@ -328,12 +324,6 @@ https://www.elastic.co/blog/how-to-debug-elasticsearch-source-code-in-intellij-i
   7、RestStatusToXContentListener.buildResponse(封装响应)
   ```
 
-  
-
-* 
-
-
-
 
 
 ## Search
@@ -343,6 +333,4 @@ https://www.elastic.co/blog/how-to-debug-elasticsearch-source-code-in-intellij-i
   ```
   org.elasticsearch.rest.action.search.RestSearchAction
   ```
-
-* 
 

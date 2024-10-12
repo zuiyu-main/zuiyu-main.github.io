@@ -1,10 +1,10 @@
 ---
 title: Elasticsearch快照使用
-date: 2020-06-20
+date: 2020-06-24
 tags:
-- Elasticsearch
+  - Elasticsearch
 categories:
-- Elasticsearch
+  - Elasticsearch
 ---
 #  elasticsearch 6.5 操作 
 
