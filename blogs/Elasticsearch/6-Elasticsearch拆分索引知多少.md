@@ -1,11 +1,11 @@
 ---
-title: Elasticsearch拆分索引知多少
-date: 2022-04-08
+title: 6-Elasticsearch拆分索引知多少
+date: 2022-07-24
 tags:
-  - Elasticsearch
-  - 源码编译
+- Elasticsearch
 categories:
-  - Elasticsearch
+- Elasticsearch
+
 ---
 原文链接：[indices-split-index API](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/indices-split-index.html)
 
@@ -47,9 +47,11 @@ categories:
 
 # 监控拆分的过程
 
-* /_cat/recovery/<target>
-* /_cat/recovery
-* /_cluster/health/<target>
+```bash
+/_cat/recovery/<target>
+/_cat/recovery
+/_cluster/health/<target>
+```
 
 # 前提条件
 
@@ -113,7 +115,7 @@ categories:
   {  "user":"user5",  "age":"22"}
   '
   ```
-  
+
 * 关闭索引
 
   ```text
@@ -160,7 +162,6 @@ categories:
   curl http://localhost:9200/_cat/recovery?v
   curl http://localhost:9200/_cluster/health/split_index_target
   ```
-  
 
 # 遇到的问题
 
