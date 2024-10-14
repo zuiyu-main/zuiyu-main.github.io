@@ -15,10 +15,8 @@ categories:
 
 # 目录
 
-[comment]: <> (![image-20220724232742823]&#40;@/images/0724/image-20220724232742823.png&#41;)
 
-![](https://cdn.jsdelivr.net/gh/zuiyu-main/picgo_photo@version/file/picgo/202410141855935.png)
-
+![](../../images/0724/image-20220724232742823.png)
 # 数据管理模块
 
 1、根据给定的需求定义一个索引
