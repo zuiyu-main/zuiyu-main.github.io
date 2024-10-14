@@ -1,5 +1,5 @@
 ---
-title: 6-Elasticsearch拆分索引知多少
+title: Elasticsearch拆分索引知多少
 date: 2022-07-24
 tags:
 - Elasticsearch

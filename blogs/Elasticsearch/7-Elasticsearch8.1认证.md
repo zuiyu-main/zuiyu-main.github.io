@@ -1,5 +1,5 @@
 ---
-title: 7-Elasticsearch8.1认证
+title: Elasticsearch8.1认证
 date: 2022-07-25
 tags:
 - Elasticsearch
@@ -15,9 +15,9 @@ categories:
 
 # 目录
 
-![image-20220724232742823](images/0724/image-20220724232742823.png)
+[comment]: <> (![image-20220724232742823]&#40;@/images/0724/image-20220724232742823.png&#41;)
 
-
+![](https://cdn.jsdelivr.net/gh/zuiyu-main/picgo_photo@version/file/picgo/202410141855935.png)
 
 # 数据管理模块
 
