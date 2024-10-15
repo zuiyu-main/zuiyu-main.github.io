@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Elasticsearch字段别名field-alias | 醉鱼Java</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/zuiyujava.png">
+    <meta name="description" content="鱼哥多年的踩坑笔记">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.31e3f89e.css" as="style"><link rel="preload" href="/assets/js/app.1597f143.js" as="script"><link rel="preload" href="/assets/js/3.4b17e28f.js" as="script"><link rel="preload" href="/assets/js/1.e8a3a0f4.js" as="script"><link rel="preload" href="/assets/js/21.efbccc57.js" as="script"><link rel="prefetch" href="/assets/js/10.386c1f24.js"><link rel="prefetch" href="/assets/js/11.c9e71829.js"><link rel="prefetch" href="/assets/js/12.225ab38e.js"><link rel="prefetch" href="/assets/js/13.1281dbd2.js"><link rel="prefetch" href="/assets/js/14.7ab24e42.js"><link rel="prefetch" href="/assets/js/15.4186693f.js"><link rel="prefetch" href="/assets/js/16.0116ca38.js"><link rel="prefetch" href="/assets/js/17.a45c1b2f.js"><link rel="prefetch" href="/assets/js/18.eaac5281.js"><link rel="prefetch" href="/assets/js/19.143bb2d7.js"><link rel="prefetch" href="/assets/js/20.18b7930b.js"><link rel="prefetch" href="/assets/js/22.f0afa9ef.js"><link rel="prefetch" href="/assets/js/23.e3ce31db.js"><link rel="prefetch" href="/assets/js/4.42b8eb28.js"><link rel="prefetch" href="/assets/js/5.09c152e1.js"><link rel="prefetch" href="/assets/js/6.b5880f82.js"><link rel="prefetch" href="/assets/js/7.4c5ee709.js"><link rel="prefetch" href="/assets/js/8.d77721c2.js"><link rel="prefetch" href="/assets/js/9.6cf91f53.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.31e3f89e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-2a0acbb5><div data-v-2a0acbb5><div class="password-shadow password-wrapper-out" style="display:none;" data-v-6afaaa56 data-v-2a0acbb5 data-v-2a0acbb5><h3 class="title" data-v-6afaaa56>醉鱼Java</h3> <p class="description" data-v-6afaaa56>鱼哥多年的踩坑笔记</p> <label id="box" class="inputBox" data-v-6afaaa56><input type="password" value="" data-v-6afaaa56> <span data-v-6afaaa56>Konck! Knock!</span> <button data-v-6afaaa56>OK</button></label> <div class="footer" data-v-6afaaa56><span data-v-6afaaa56><i class="iconfont reco-theme" data-v-6afaaa56></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6afaaa56>vuePress-theme-reco</a></span> <span data-v-6afaaa56><i class="iconfont reco-copyright" data-v-6afaaa56></i> <a data-v-6afaaa56><span data-v-6afaaa56>醉鱼Java</span>
+          
+        <span data-v-6afaaa56>2019 - </span>
+        2024
+      </a></span></div></div> <div class="hide" data-v-2a0acbb5><header class="navbar" data-v-2a0acbb5><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="醉鱼Java" class="logo"> <span class="site-name">醉鱼Java</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/Elasticsearch/" class="nav-link"><i class="undefined"></i>
+  Elasticsearch
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系作者
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/wechat.html" class="nav-link"><i class="iconfont reco-wechat"></i>
+  商务合作
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/zuiyu-main" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-2a0acbb5></div> <aside class="sidebar" data-v-2a0acbb5><div class="personal-info-wrapper" data-v-3382c467 data-v-2a0acbb5><img src="/avatar.png" alt="author-avatar" class="personal-img" data-v-3382c467> <h3 class="name" data-v-3382c467>
+    醉鱼Java
+  </h3> <div class="num" data-v-3382c467><div data-v-3382c467><h3 data-v-3382c467>13</h3> <h6 data-v-3382c467>Articles</h6></div> <div data-v-3382c467><h3 data-v-3382c467>2</h3> <h6 data-v-3382c467>Tags</h6></div></div> <ul class="social-links" data-v-3382c467></ul> <hr data-v-3382c467></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/Elasticsearch/" class="nav-link"><i class="undefined"></i>
+  Elasticsearch
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间线
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系作者
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/wechat.html" class="nav-link"><i class="iconfont reco-wechat"></i>
+  商务合作
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/zuiyu-main" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-6afaaa56 data-v-2a0acbb5><h3 class="title" data-v-6afaaa56>Elasticsearch字段别名field-alias</h3> <!----> <label id="box" class="inputBox" data-v-6afaaa56><input type="password" value="" data-v-6afaaa56> <span data-v-6afaaa56>Konck! Knock!</span> <button data-v-6afaaa56>OK</button></label> <div class="footer" data-v-6afaaa56><span data-v-6afaaa56><i class="iconfont reco-theme" data-v-6afaaa56></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6afaaa56>vuePress-theme-reco</a></span> <span data-v-6afaaa56><i class="iconfont reco-copyright" data-v-6afaaa56></i> <a data-v-6afaaa56><span data-v-6afaaa56>醉鱼Java</span>
+          
+        <span data-v-6afaaa56>2019 - </span>
+        2024
+      </a></span></div></div> <div data-v-2a0acbb5><div data-v-2a0acbb5><main class="page" style="padding-right:0;"><section style="display:;"><div class="page-title"><h1 class="title">Elasticsearch字段别名field-alias</h1> <div data-v-4b52865a><i class="iconfont reco-account" data-v-4b52865a><span data-v-4b52865a>醉鱼Java</span></i> <i class="iconfont reco-date" data-v-4b52865a><span data-v-4b52865a>8/15/2022</span></i> <!----> <i class="tags iconfont reco-tag" data-v-4b52865a><span class="tag-item" data-v-4b52865a>Elasticsearch</span></i></div></div> <div class="theme-reco-content content__default"><h1 id="环境">环境</h1> <ul><li>Elasticsearch 8.1</li> <li>Kibana 8.1</li> <li>MacOS 10.14.6</li></ul> <h1 id="简介">简介</h1> <p>首先我们还是先了解一下，<strong>什么是字段别名？<strong>大家可能听说过</strong>索引别名</strong>，通过索引的别名可以轻松的切换所需的数据来源与哪一个索引，那么什么是字段别名呢？所谓字段别名，就是索引mapping定义时的备用字段，通过字段别名可以替换搜索请求中的目标字段，字段别名可以用于搜索，排序，聚合，高亮，docvalue_fields，stored_fields，suggestions，下面我们一起来看一下字段别名的详细使用过程</p> <h1 id="使用">使用</h1> <h2 id="定义字段别名规范">定义字段别名规范</h2> <ul><li>必须是一个明确的字段，不能是一个对象或者指向另一个字段别名</li> <li>在创建字段别名时，字段别名指向的目标字段必须已经存在</li> <li>如果定义了嵌套的对象，则字段别名必须具有同样的嵌套范围</li></ul> <p>字段别名只能指向一个字段，不能同时指向多个字段；</p> <p>但是可以通过修改mapping中的字段别名设置指向另一个新字段</p> <h2 id="不支持使用字段别名的api">不支持使用字段别名的API</h2> <ul><li>首先是不能在写入数据的时候使用字段别名，因为本身字段别名是虚拟的，不存在的，所以不支持写入，同样也不能用于copy_to</li> <li>因为字段的别名是不存在_source中的，所以搜索请求时的过滤字段也是不会生效的</li></ul> <h1 id="测试">测试</h1> <ul><li><p>创建索引，定义字段别名</p> <p>其中创建了索引blog1和blog2,各自定义了两个字段别名public_count和public_content,在blog1索引中，public_count指向doc.count,public_content指向doc.content;在blog2索引中，public_count指向doc_count,public_content指向doc_content;</p> <div class="language-text extra-class"><pre class="language-text"><code>PUT blog1
+{
+  &quot;mappings&quot;: {
+    &quot;properties&quot;: {
+      &quot;doc&quot;: {
+        &quot;properties&quot;: {
+          &quot;count&quot;: {
+            &quot;type&quot;: &quot;long&quot;
+          },
+          &quot;content&quot;: {
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;fields&quot;: {
+              &quot;keyword&quot;: {
+                &quot;type&quot;: &quot;keyword&quot;
+              }
+            }
+          }
+        }
+      },
+      &quot;creater&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;
+      },
+      &quot;public_count&quot;: {
+        &quot;type&quot;: &quot;alias&quot;,
+        &quot;path&quot;: &quot;doc.count&quot;
+      },
+      &quot;public_content&quot;: {
+        &quot;type&quot;: &quot;alias&quot;,
+        &quot;path&quot;: &quot;doc.content&quot;
+      }
+    }
+  }
+}
+
+
+PUT blog2
+{
+  &quot;mappings&quot;: {
+    &quot;properties&quot;: {
+      &quot;doc_count&quot;: {
+        &quot;type&quot;: &quot;long&quot;
+      },
+      &quot;doc_content&quot;: {
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;fields&quot;: {
+          &quot;keyword&quot;: {
+            &quot;type&quot;: &quot;keyword&quot;
+          }
+        }
+      },
+      &quot;creater&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;
+      },
+      &quot;public_count&quot;: {
+        &quot;type&quot;: &quot;alias&quot;,
+        &quot;path&quot;: &quot;doc_count&quot;
+      },
+      &quot;public_content&quot;: {
+        &quot;type&quot;: &quot;alias&quot;,
+        &quot;path&quot;: &quot;doc_content&quot;
+      }
+    }
+  }
+}
+</code></pre></div></li> <li><p>插入测试数据</p> <div class="language-text extra-class"><pre class="language-text"><code>POST _bulk
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog1&quot;,&quot;_id&quot;:&quot;1&quot;}}
+{&quot;creater&quot;:&quot;zuiyu1&quot;,&quot;doc.count&quot;:&quot;100&quot;,&quot;doc.content&quot;:&quot;zuiyu elasticsearch &quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog1&quot;,&quot;_id&quot;:&quot;2&quot;}}
+{&quot;creater&quot;:&quot;zuiyu2&quot;,&quot;doc.count&quot;:&quot;200&quot;,&quot;doc.content&quot;:&quot;zuiyu vue&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog1&quot;,&quot;_id&quot;:&quot;3&quot;}}
+{&quot;creater&quot;:&quot;zuiyu3&quot;,&quot;doc.count&quot;:&quot;300&quot;,&quot;doc.content&quot;:&quot;java demo&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog1&quot;,&quot;_id&quot;:&quot;4&quot;}}
+{&quot;creater&quot;:&quot;zuiyu4&quot;,&quot;doc.count&quot;:&quot;300&quot;,&quot;doc.content&quot;:&quot;java demo plus&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog1&quot;,&quot;_id&quot;:&quot;5&quot;}}
+{&quot;creater&quot;:&quot;zuiyu5&quot;,&quot;doc.count&quot;:&quot;300&quot;,&quot;doc.content&quot;:&quot;java pro and elasticsearch&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog2&quot;,&quot;_id&quot;:&quot;1&quot;}}
+{&quot;creater&quot;:&quot;zuiyu1&quot;,&quot;doc_count&quot;:&quot;10&quot;,&quot;doc_content&quot;:&quot;醉鱼ES小白入门课&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog2&quot;,&quot;_id&quot;:&quot;2&quot;}}
+{&quot;creater&quot;:&quot;zuiyu2&quot;,&quot;doc_count&quot;:&quot;550&quot;,&quot;doc_content&quot;:&quot;醉鱼前端 vue 小白入门课&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog2&quot;,&quot;_id&quot;:&quot;3&quot;}}
+{&quot;creater&quot;:&quot;zuiyu3&quot;,&quot;doc_count&quot;:&quot;60&quot;,&quot;doc_content&quot;:&quot;醉鱼java小白入门课&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog2&quot;,&quot;_id&quot;:&quot;4&quot;}}
+{&quot;creater&quot;:&quot;zuiyu4&quot;,&quot;doc_count&quot;:&quot;60&quot;,&quot;doc_content&quot;:&quot;醉鱼MySQL8.0小白入门课&quot;}
+{ &quot;index&quot;:{&quot;_index&quot;:&quot;blog2&quot;,&quot;_id&quot;:&quot;5&quot;}}
+{&quot;creater&quot;:&quot;zuiyu5&quot;,&quot;doc_count&quot;:&quot;60&quot;,&quot;doc_content&quot;:&quot;醉鱼Redis小白入门课&quot;}
+
+</code></pre></div></li> <li><p>搜索测试、聚合、排序、高亮、建议</p> <p>目标是实现搜索索引blog1和blog2中content内容中包含java的文档,因为两个索引的mapping结构完全不一样，所以使用定义的相同名称的public_count和public_content</p> <ul><li><p>聚合</p> <p>使用public_count字段搜索索引blog1和blog2中public_count 大于100的文档，对public_count进行聚合分桶</p> <div class="language-text extra-class"><pre class="language-text"><code>GET blog*/_search?size=0
+{
+  &quot;query&quot;: {
+    &quot;range&quot;: {
+      &quot;public_count&quot;: {
+        &quot;gte&quot;: 100
+        }
+    }
+  },
+  &quot;aggs&quot;: {
+    &quot;all_agg&quot;: {
+      &quot;terms&quot;: {
+        &quot;field&quot;: &quot;public_count&quot;
+      }
+    }
+  }
+}
+</code></pre></div></li> <li><p>排序</p> <p>使用public_count字段搜索索引blog1和blog2中public_count结果大于100的文档,对public_count进行降序输出</p> <div class="language-text extra-class"><pre class="language-text"><code>GET blog*/_search
+{
+  &quot;query&quot;: {
+    &quot;range&quot;: {
+      &quot;public_count&quot;: {
+        &quot;gte&quot;: 100
+        }
+    }
+  },
+  &quot;sort&quot;: [
+    {
+      &quot;public_count&quot;: {
+        &quot;order&quot;: &quot;desc&quot;
+      }
+    }
+  ]
+}
+</code></pre></div></li> <li><p>高亮</p> <p>使用public_content字段搜索索引blog1和blog2中包含java的，高亮输出，结果前后加上em标签</p> <div class="language-text extra-class"><pre class="language-text"><code>GET blog*/_search
+{
+  &quot;query&quot;: {
+    &quot;wildcard&quot;: {
+      &quot;public_content&quot;: {
+        &quot;value&quot;: &quot;*java*&quot;
+      }
+    }
+  },
+  &quot;highlight&quot;: {
+    &quot;fields&quot;: {
+      &quot;public_content&quot;: {
+        &quot;pre_tags&quot;: [
+          &quot;&amp;lt;em&gt;&quot;
+        ],
+        &quot;post_tags&quot;: [
+          &quot;&amp;lt;/em&gt;&quot;
+        ]
+      }
+    }
+  }
+}
+</code></pre></div></li> <li><p>建议</p> <p>使用public_count字段搜索索引blog1和blog2中搜索public_content中包含java的文档，输入一个错误单词jave,建议返回java</p> <div class="language-text extra-class"><pre class="language-text"><code>GET blog*/_search
+{
+  &quot;query&quot;: {
+    &quot;wildcard&quot;: {
+      &quot;public_content&quot;: {
+        &quot;value&quot;: &quot;*java*&quot;
+      }
+    }
+  },
+  &quot;suggest&quot;: {
+    &quot;YOUR_SUGGESTION&quot;: {
+      &quot;text&quot;: &quot;jave&quot;,
+      &quot;term&quot;: {
+        &quot;field&quot;: &quot;public_content&quot;
+      }
+    }
+  }
+}
+</code></pre></div></li> <li><p>_source测试</p> <p>使用_source测试返回字段public_count，public_content，因为字段别名是虚拟的，所以此时是没有返回结果的</p> <div class="language-text extra-class"><pre class="language-text"><code>GET blog*/_search
+{
+  &quot;query&quot;: {
+    &quot;wildcard&quot;: {
+      &quot;public_content&quot;: {
+        &quot;value&quot;: &quot;*java*&quot;
+      }
+    }
+  },
+  &quot;_source&quot;: [
+    &quot;public_count&quot;,
+    &quot;public_content&quot;
+  ]
+}
+</code></pre></div></li> <li><p>使用docvalue_fields请求字段获取</p> <div class="language-text extra-class"><pre class="language-text"><code>GET blog*/_search
+{
+  &quot;query&quot;: {
+    &quot;wildcard&quot;: {
+      &quot;public_content&quot;: {
+        &quot;value&quot;: &quot;*java*&quot;
+      }
+    }
+  },
+   &quot;docvalue_fields&quot;: [
+    &quot;public_count&quot;
+  ]
+}
+</code></pre></div></li></ul></li></ul> <h1 id="使用场景">使用场景</h1> <p>简单总结一下字段别名的使用场景：</p> <ul><li>文中的例子，可以对同一个人在不同博客网站上写的内容进行统计</li> <li>获取采集的日志信息，不同的数据源，索引的日志mapping不一样，统计时就可以使用字段别名进行统一的统计</li></ul></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">10/15/2024, 12:36:30 PM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:0;" data-v-ff035a48 data-v-2a0acbb5></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-2a01419c data-v-2a01419c><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-2a01419c><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-2a01419c></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-2a01419c></path></svg></div></div></div>
+    <script src="/assets/js/app.1597f143.js" defer></script><script src="/assets/js/3.4b17e28f.js" defer></script><script src="/assets/js/1.e8a3a0f4.js" defer></script><script src="/assets/js/21.efbccc57.js" defer></script>
+  </body>
+</html>
