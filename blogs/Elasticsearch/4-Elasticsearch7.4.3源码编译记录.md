@@ -44,23 +44,23 @@ categories:
   
   
 
-* 4、打包对应版本的发行版文件，为一会启动做准备.这一步参考`elasticsearch/TESTING.assciidoc`文件
+* 4、打包对应版本的发行版文件，为一会启动做准备.这一步参考elasticsearch/TESTING.assciidoc文件
 
   ```text
   cd elasticsearch
   ./gradlew assemble
   ```
 
-* 5、打包成功之后，到`elasticsearch/distribution/packages`下找到自己对应系统的发行版文件
+* 5、打包成功之后，到elasticsearch/distribution/packages下找到自己对应系统的发行版文件
 
 ![image-20220321211004360](../../images/0320/image-20220321211004360.png)
 
-* 6、解压`elasticsearch-oss-7.4.3-SNAPSHOT-x86_64.rpm`,然后在`elasticsearch` 同级别目录下新建文件夹`home`,并把解压后的文件放到home文件夹下
+* 6、解压elasticsearch-oss-7.4.3-SNAPSHOT-x86_64.rpm,然后在elasticsearch 同级别目录下新建文件夹home,并把解压后的文件放到home文件夹下
 ![](../../images/0320/image-20220321211247410.png)
 ![](../../images/0320/image-20220321211314101.png)
 
 
-* 7、找到`elasticsearch/server/build.gradle`,修改 compileOnly 改为compile,详细信息查看下面
+* 7、找到elasticsearch/server/build.gradle,修改 compileOnly 改为compile,详细信息查看下面
 
   ```text
   // compileOnly project(':libs:elasticsearch-plugin-classloader'),compileOnly 改为compile
@@ -119,9 +119,9 @@ Caused by: java.lang.ClassNotFoundException: org.elasticsearch.plugins.ExtendedP
 
 编译失败的原因很大一部分是
 
-1、gradle版本问题，jdk版本问题，所以多看代码中自带的`CONTRIBUTING.md`,`README.textile`,`TESTING.asciidoc`,确认当前版本所依赖的环境版本要求，起码能少踩很多的坑
+1、gradle版本问题，jdk版本问题，所以多看代码中自带的CONTRIBUTING.md,README.textile,TESTING.asciidoc,确认当前版本所依赖的环境版本要求，起码能少踩很多的坑
 
-2、本身如果安装了gradle，确保安装的gradle不要对项目生效，尽量使用代码中`elasticsearch/gradle`中文件夹指定的gradle，如果要使用本机安装的gradle，请确保gradle版本对项目版本兼容
+2、本身如果安装了gradle，确保安装的gradle不要对项目生效，尽量使用代码中elasticsearch/gradle中文件夹指定的gradle，如果要使用本机安装的gradle，请确保gradle版本对项目版本兼容
 
 3、把上面第七步，第九步的参数都配置基本问题不大了，实在打包不成功，也可以去官网下载发行版
 

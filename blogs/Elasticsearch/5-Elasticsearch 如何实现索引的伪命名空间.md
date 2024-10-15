@@ -22,7 +22,7 @@ categories:
 
 # 应用场景
 
-在公司内部资源紧张的情况下，多个项目使用同一个`elasticsearch`并且数据互不干扰，实现资源的最大化利用，节约成本
+在公司内部资源紧张的情况下，多个项目使用同一个elasticsearch并且数据互不干扰，实现资源的最大化利用，节约成本
 
 # 集成Elasticsearch 
 
@@ -113,7 +113,7 @@ server.port=8082
 
   
 
-* 新建User 实体类，指定索引名称为`namespace.user`
+* 新建User 实体类，指定索引名称为namespace.user
 
   ```text
   @Document(indexName = "#{@getElasticsearchNamespace}.user")
@@ -275,7 +275,7 @@ server.port=8082
 
 # 总结
 
-我们通过增加一个配置类来获取自定义的`namespace`,然后在类指定索引名时通过获取变量的形式去读取，这样生成的索引就会带一个前缀，也就是我们想要的`namespace·`，也就实现了我们最初的目标，复用同一个`elasticsearch`,达到节省服务器资源的目的
+我们通过增加一个配置类来获取自定义的namespace,然后在类指定索引名时通过获取变量的形式去读取，这样生成的索引就会带一个前缀，也就是我们想要的namespace·，也就实现了我们最初的目标，复用同一个elasticsearch,达到节省服务器资源的目的
 
 # 源码地址
 
